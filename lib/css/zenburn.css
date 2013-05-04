@@ -5,10 +5,13 @@ based on dark.css by Ivan Sagalaev
 
 */
 
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
 pre code {
-  display: block; padding: 0.5em;
-  background: #3F3F3F;
+  display: block; padding: 1em !important;
+  background: #001E26;
   color: #DCDCDC;
+  font-family: 'Droid Sans Mono', monospace !important;
 }
 
 pre .keyword,

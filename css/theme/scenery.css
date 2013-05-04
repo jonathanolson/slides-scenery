@@ -43,6 +43,13 @@ a img {
   border: none;
 }
 
+.scene {
+  background-color: #001E26;
+  position: relative;
+  margin: 40px auto !important; /* reveal.js seems to add a large right margin */
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+}
+
 ::selection {
   color: white;
   background: #d33682;
