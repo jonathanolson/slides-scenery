@@ -38,6 +38,11 @@ strong {
   color: #eee8d5;
 }
 
+a img {
+  text-decoration: none;
+  border: none;
+}
+
 ::selection {
   color: white;
   background: #d33682;
