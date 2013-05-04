@@ -140,6 +140,27 @@ scene.addChild( new scenery.Path( {
 } ) );
             </code></pre>
           </section>
+          <section>
+            <h3>Images</h3>
+            <div id="images-scene" class="scene" style="width: 260px; height: 100px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/energy-skate-park-basics-thumbnail.png';
+
+// direct URL reference, but cannot position based on bounds
+scene.addChild( new scenery.Image( imageUrl, {
+  x: 100, y: -30, rotation: Math.PI / 6,
+} ) );
+
+var img = document.createElement( 'img' );
+img.onload = function( e ) {
+  // can also pass in HTMLImageElement or HTMLCanvasElement references
+  scene.addChild( new scenery.Image( img, {
+    opacity: 0.1, scale: 2
+  } ) );
+};
+img.src = imageUrl;
+            </code></pre>
+          </section>
         </section>
 
       </div>
@@ -200,6 +221,30 @@ scene.addChild( new scenery.Path( {
         } ) );
         
         scene.updateScene();
+        
+        /*---------------------------------------------------------------------------*
+        * Images
+        *----------------------------------------------------------------------------*/
+        
+        scene = new scenery.Scene( $( '#images-scene' ), { renderer: 'svg' } );
+        
+        var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/energy-skate-park-basics-thumbnail.png';
+        
+        // direct URL reference, but cannot position based on bounds
+        scene.addChild( new scenery.Image( imageUrl, {
+          x: 100, y: -30, rotation: Math.PI / 6,
+        } ) );
+        
+        var img = document.createElement( 'img' );
+        img.onload = function( e ) {
+          // can also pass in HTMLImageElement or HTMLCanvasElement references
+          scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
+        };
+        img.src = imageUrl;
+        
+        scene.updateScene();
+        
+        
       } );
     </script>
 
