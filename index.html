@@ -99,9 +99,10 @@
         </section>
         
         <section>
-          <h2>A Tour of Scenery</h2>
-          <div id="hello-world-scene" class="scene" style="width: 400px; height: 100px;"></div>
-          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+          <section>
+            <h2>A Tour of Scenery</h2>
+            <div id="hello-world-scene" class="scene" style="width: 400px; height: 100px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 // Create a scene graph over a positioned block-level element
 var scene = new scenery.Scene( $( '#hello-world-scene' ) );
  
@@ -114,7 +115,31 @@ scene.addChild( new scenery.Text( 'Hello World', {
  
 // Paint any changes (in this case, our text).
 scene.updateScene();
-          </code></pre>
+            </code></pre>
+          </section>
+          <section>
+            <h3>Shapes</h3>
+            <div id="shapes-scene" class="scene" style="width: 315px; height: 100px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+// simple shapes can be accelerated
+scene.addChild( new scenery.Rectangle( 10, 10, 100, 80, {
+  fill: '#f00', stroke: '#fff', lineWidth: 2
+} ) );
+
+scene.addChild( new scenery.Path( {
+  shape: kite.Shape.regularPolygon( 8, 30 ),
+  fill: '#0f0', x: 150, y: 50
+} ) );
+
+scene.addChild( new scenery.Path( {
+  // Canvas-like Path API. Supports SVG Shape( 'M0 90Q155 50 0 10Z' )
+  shape: new kite.Shape().lineTo( 0, 90 )
+                         .quadraticCurveTo( 155, 50, 0, 10 )
+                         .close(),
+  fill: '#00f', x: 190
+} ) );
+            </code></pre>
+          </section>
         </section>
 
       </div>
@@ -134,6 +159,10 @@ scene.updateScene();
     
     <script type="text/javascript">
       $( window ).ready( function() {
+        /*---------------------------------------------------------------------------*
+        * Hello World
+        *----------------------------------------------------------------------------*/
+        
         // Create a scene graph over the block-level element. Everything inside is replaced
         var scene = new scenery.Scene( $( '#hello-world-scene' ) );
          
@@ -145,6 +174,31 @@ scene.updateScene();
         } ) );
          
         // Paint any changes (in this case, our text).
+        scene.updateScene();
+        
+        /*---------------------------------------------------------------------------*
+        * Shapes
+        *----------------------------------------------------------------------------*/
+        
+        scene = new scenery.Scene( $( '#shapes-scene' ) );
+        
+        scene.addChild( new scenery.Rectangle( 20, 10, 100, 80, {
+          fill: '#f00', stroke: '#fff', lineWidth: 2
+        } ) );
+        
+        scene.addChild( new scenery.Path( {
+          shape: kite.Shape.regularPolygon( 8, 30 ),
+          fill: '#0f0', x: 170, y: 50
+        } ) );
+        
+        scene.addChild( new scenery.Path( {
+          // shape: new kite.Shape( 'M0 90Q155 50 0 10Z' ),
+          shape: new kite.Shape().lineTo( 0, 90 )
+                                 .quadraticCurveTo( 155, 50, 0, 10 )
+                                 .close(),
+          fill: '#00f', x: 220
+        } ) );
+        
         scene.updateScene();
       } );
     </script>
