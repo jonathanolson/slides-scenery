@@ -1,0 +1,18 @@
+"A Scene Graph for Modern Browsers"
+
+Scenery (http://phetsims.github.io/scenery/) is a library created
+by PhET Interactive Simulations for creating interactive
+2D applications. Its core is built around a scene graph
+abstraction (Shapes, Text, Images, Nodes, etc. in a hierarchy)
+capable of being displayed with multiple technologies (Canvas/SVG/DOM and
+WebGL in the future).
+
+One of its core goals is to deliver good performance across a number of
+devices while keeping application code clear and concise. If something
+is faster on the iPad using SVG with CSS3 transforms for each object,
+on IE with Canvas, and WebGL with Chrome/Firefox, we shouldn't have to
+deliver three separate implementations!
+
+We'll cover an overview of the power of this approach, along with
+current and planned performance optimizations and features,
+and potential drawbacks.

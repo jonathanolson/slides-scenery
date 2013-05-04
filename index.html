@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Scenery: A Scene Graph for Modern Browsers</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Scenery</h1>
+					<h3 class="subtitle">A Scene Graph for Modern Browsers</h3>
+					<p>
+						Jonathan Olson<br>
+						<small>
+							<a href="http://phet.colorado.edu">PhET Interactive Simulations</a>
+							<span style="opacity: 0.5;">|</span> University of Colorado Boulder
+						</small>
+					</p>
+				</section>
+				
+				<section>
+					<section>
+						<h2>PhET Simulations</h2>
+						<p>128 educational simulations in Java / Flash</p>
+						<!-- <img src="http://phet.colorado.edu/sims/molecule-shapes/molecule-shapes-screenshot.png" alt="Molecule Shapes"/> -->
+						<img src="http://phet.colorado.edu/sims/plate-tectonics/plate-tectonics-screenshot.png" alt="Plate Tectonics"/>
+						<img src="http://phet.colorado.edu/sims/projectile-motion/projectile-motion-screenshot.png" alt="Projectile Motion"/>
+						<img src="http://phet.colorado.edu/sims/circuit-construction-kit/circuit-construction-kit-dc-screenshot.png" alt="Circuit Construction Kit"/>
+						<img src="http://phet.colorado.edu/sims/build-an-atom/build-an-atom-screenshot.png" alt="Build an Atom"/>
+						<!-- <img src="http://phet.colorado.edu/sims/build-a-molecule/build-a-molecule-screenshot.png" alt="Build a Molecule"/> -->
+						<img src="http://phet.colorado.edu/sims/beers-law-lab/beers-law-lab-screenshot.png" alt="Beer's Law Lab"/>
+						<img src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/>
+					</section>
+					<section>
+						<ul>
+							<li><a href="http://phet.colorado.edu">http://phet.colorado.edu</a></li>
+							<li>Previously seen in <a href="http://spot.colorado.edu/~reids/talks/phet-html5-slides-reid-oct-2012.pdf">Sam Reid's talk</a></li>
+							<li>Run over 110 million times, translated to 74 languages</li>
+							<li><strong>Porting to HTML5 to be available on more devices</strong></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Reasons for Scenery</h3>
+						<ul>
+							<li><strong>Performance</strong> and <strong>consistency</strong> between platforms<br>(iOS, Android, Windows RT, Desktop browsers)</li>
+							<li>Concise and clear <strong>syntax</strong></li>
+							<!-- <li>Match conventions from well-designed 2D scene graphs like <a href="http://www.piccolo2d.org/">Piccolo2D</a></li> -->
+							<li><strong>Features</strong></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Features we want</h3>
+						<ul>
+							<li>Bounds tracking</li>
+							<li>Input event system (hit regions, multi-touch support, cursor support)</li>
+							<li>Clipping, Masking, Opacity, Gradients, Patterns, Visibility</li>
+							<li>Constructive Solid Geometry, Shape transformations</li>
+							<li>Integration with arbitrary content, like 3D with <a href="https://github.com/mrdoob/three.js/">three.js</a></li>
+							<li>DAG (directed acyclic graph), not just a tree</li>
+							<li>Debugging utilities</li>
+							<li>Accessibility</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Other scene graphs</h3>
+						<ul>
+							<li><strong>Fabric</strong>: lacks full-featured event handling</li>
+							<li><strong>Kinetic</strong>: good API with layers. hit regions need all same-origin content (issues when running locally)</li>
+							<li><strong>Paper</strong>: less performance</li>
+							<li><strong>CAAT</strong>: less popular, dirty rectangle issues</li>
+							<li><strong>Easel</strong>: initially chosen before Scenery</li>
+						</ul>
+						<p style="margin-top: 15px;">
+							Prototypes indicate that custom Canvas and SVG code and barebones scene graphs
+							can get <a href="http://phetsims.github.io/scenery/tests/easel-performance/easel-tests.html">better performance</a>
+						</p>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				keyboard: true,
+				overview: true,
+				center: true,
+
+				// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				theme: 'scenery', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transitionSpeed: 'fast', // or default/slow
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					// { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					// { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					// { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
