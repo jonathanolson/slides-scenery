@@ -221,6 +221,7 @@ third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
           </section>
           <section>
             <h3>Stroke Styles</h3>
+            <div id="line-cap-scene" class="scene" style="width: 384px; height: 96px;"></div>
           </section>
           <section>
             <h3>Axis-aligned Bounds</h3>
@@ -526,7 +527,7 @@ accurateText.left = path.left;   // align the lower text with the path
         })();
         
         /*---------------------------------------------------------------------------*
-        * Fills
+        * Strokes
         *----------------------------------------------------------------------------*/
         
         (function(){
@@ -566,6 +567,80 @@ accurateText.left = path.left;   // align the lower text with the path
           } );
           img.src = 'http://phet.colorado.edu/images/phet-logo-yellow.png';
           
+          scene.updateScene();
+        })();
+        
+        /*---------------------------------------------------------------------------*
+        * Stroke styles
+        *----------------------------------------------------------------------------*/
+        
+        var strokeTextColor = 'ddd';
+        var strokeMainColor = 'rgba(255,255,255,0.7)';
+        var strokeLineColor = '000';
+        (function(){
+          // TODO: Chrome canvas lineWidth with pattern bug (looks like half size?)
+          var scene = new scenery.Scene( $( '#line-cap-scene' ) );
+          
+          scene.scale( 1.5 );
+          
+          scene.addChild( new scenery.Text( 'butt', {
+            fontSize: 14,
+            centerX: 256/6,
+            y: 20,
+            fill: strokeTextColor
+          } ) );
+          scene.addChild( new scenery.Text( 'square', {
+            fontSize: 14,
+            centerX: 256*3/6,
+            y: 20,
+            fill: strokeTextColor
+          } ) );
+          scene.addChild( new scenery.Text( 'round', {
+            fontSize: 14,
+            centerX: 256*5/6,
+            y: 20,
+            fill: strokeTextColor
+          } ) );
+          
+          var shape = kite.Shape.lineSegment( 0, 50, 0, 70 );
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256/6,
+            stroke: strokeMainColor,
+            lineWidth: 30,
+            lineCap: 'butt'
+          } ) );
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256*3/6,
+            stroke: strokeMainColor,
+            lineWidth: 30,
+            lineCap: 'square'
+          } ) );
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256*5/6,
+            stroke: strokeMainColor,
+            lineWidth: 30,
+            lineCap: 'round'
+          } ) );
+          // add a red highlight
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256/6,
+            stroke: strokeLineColor
+          } ) );
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256*3/6,
+            stroke: strokeLineColor
+          } ) );
+          scene.addChild( new scenery.Path( {
+            shape: shape,
+            x: 256*5/6,
+            stroke: strokeLineColor
+          } ) );
+            
           scene.updateScene();
         })();
         
