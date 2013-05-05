@@ -176,8 +176,51 @@ scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
             </code></pre>
           </section>
           <section>
-            <h3>Fills and Strokes</h3>
-            <p>Colors, gradients, patterns</p>
+            <h3>Fills</h3>
+            <div id="fills-scene" class="scene" style="width: 340px; height: 120px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+first.fill = 'rgba(255,127,0,0.8)'; // full support for CSS colors
+
+// linear gradients
+secondBottom.fill = new scenery.LinearGradient( 0, 0, 100, 0 )
+                               .addColorStop( 0, '#000' )
+                               .addColorStop( 1, '#666' );
+
+// radial gradients
+secondTop.fill = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+                            .addColorStop( 0, '#0ff' )
+                            .addColorStop( 1, 'rgba(0,127,255,0)' );
+
+// patterns
+var transform = dot.Matrix3.rotation2( Math.PI / 6 )
+                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+third.fill = new scenery.Pattern( img ).setTransformMatrix( transform );
+            </code></pre>
+          </section>
+          <section>
+            <h3>Strokes</h3>
+            <div id="strokes-scene" class="scene" style="width: 340px; height: 120px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+first.stroke = 'rgba(255,127,0,0.8)'; // full support for CSS colors
+
+// linear gradients
+secondBottom.stroke = new scenery.LinearGradient( 0, 0, 100, 0 )
+                                 .addColorStop( 0, '#000' )
+                                 .addColorStop( 1, '#666' );
+
+// radial gradients
+secondTop.stroke = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+                              .addColorStop( 0, '#0ff' )
+                              .addColorStop( 1, 'rgba(0,127,255,0)' );
+
+// patterns
+var transform = dot.Matrix3.rotation2( Math.PI / 6 )
+                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
+            </code></pre>
+          </section>
+          <section>
+            <h3>Stroke Styles</h3>
           </section>
           <section>
             <h3>Axis-aligned Bounds</h3>
@@ -439,7 +482,92 @@ accurateText.left = path.left;   // align the lower text with the path
         
         scene.updateScene();
         
-        window.scene = scene;
+        /*---------------------------------------------------------------------------*
+        * Fills
+        *----------------------------------------------------------------------------*/
+        
+        (function(){
+          var scene = new scenery.Scene( $( '#fills-scene' ) );
+          
+          var first = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 10, y: 10 } );
+          scene.addChild( first );
+          
+          var secondBottom = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 120, y: 10 } );
+          scene.addChild( secondBottom );
+          
+          var secondTop = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 120, y: 10 } );
+          scene.addChild( secondTop );
+          
+          var third = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 230, y: 10 } );
+          scene.addChild( third );
+          
+          var fillScene = scene;
+          var img = document.createElement( 'img' );
+          img.addEventListener( 'load', function() {
+            first.fill = 'rgba(255,127,0,0.8)'; // full support for CSS colors
+
+            secondBottom.fill = new scenery.LinearGradient( 0, 0, 100, 0 )
+                                           .addColorStop( 0, '#000' )
+                                           .addColorStop( 1, '#666' );
+
+            secondTop.fill = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+                                        .addColorStop( 0, '#0ff' )
+                                        .addColorStop( 1, 'rgba(0,127,255,0)' );
+            
+            var transform = dot.Matrix3.rotation2( Math.PI / 6 )
+                                       .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+            third.fill = new scenery.Pattern( img ).setTransformMatrix( transform );
+            
+            scene.updateScene();
+          } );
+          img.src = 'http://phet.colorado.edu/images/phet-logo-yellow.png';
+          
+          scene.updateScene();
+        })();
+        
+        /*---------------------------------------------------------------------------*
+        * Fills
+        *----------------------------------------------------------------------------*/
+        
+        (function(){
+          // TODO: Chrome canvas lineWidth with pattern bug (looks like half size?)
+          var scene = new scenery.Scene( $( '#strokes-scene' ), { renderer: 'svg' } );
+          
+          var first = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 10, y: 10, lineWidth: 5 } );
+          scene.addChild( first );
+          
+          var secondBottom = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 120, y: 10, lineWidth: 5 } );
+          scene.addChild( secondBottom );
+          
+          var secondTop = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 120, y: 10, lineWidth: 5 } );
+          scene.addChild( secondTop );
+          
+          var third = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 230, y: 10, lineWidth: 5 } );
+          scene.addChild( third );
+          
+          var fillScene = scene;
+          var img = document.createElement( 'img' );
+          img.addEventListener( 'load', function() {
+            first.stroke = 'rgba(255,127,0,0.8)'; // full support for CSS colors
+
+            secondBottom.stroke = new scenery.LinearGradient( 0, 0, 100, 0 )
+                                           .addColorStop( 0, '#000' )
+                                           .addColorStop( 1, '#666' );
+
+            secondTop.stroke = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+                                        .addColorStop( 0, '#0ff' )
+                                        .addColorStop( 1, 'rgba(0,127,255,0)' );
+            
+            var transform = dot.Matrix3.rotation2( Math.PI / 6 )
+                                       .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+            third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
+            
+            scene.updateScene();
+          } );
+          img.src = 'http://phet.colorado.edu/images/phet-logo-yellow.png';
+          
+          scene.updateScene();
+        })();
         
       } );
     </script>
