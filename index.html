@@ -167,7 +167,7 @@ element.innerHTML =
   '&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
   '&lt;input type="text"&gt;';
 scene.addChild( new scenery.DOM( element, {
-  x: 120, y: 15, rotation: Math.PI / 6
+  x: 120, rotation: Math.PI / 6
 } ) );
 
 // HTML, with the same styling and positioning as Text
@@ -422,7 +422,7 @@ accurateText.left = path.left;   // align the lower text with the path
         
         var element = document.createElement( 'span' );
         element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
-        scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
+        scene.addChild( new scenery.DOM( element, { x: 120, rotation: Math.PI / 6 } ) );
         
         // HTML, with the same styling and positioning as Text
         scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
