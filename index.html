@@ -161,6 +161,19 @@ img.onload = function( e ) {
 img.src = imageUrl;
             </code></pre>
           </section>
+          <section>
+            <h3>DOM elements</h3>
+            <div id="dom-scene" class="scene" style="width: 400px; height: 200px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+var element = document.createElement( 'span' );
+element.innerHTML =
+  '&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
+  '&lt;input type="text"&gt;';
+scene.addChild( new scenery.DOM( element, {
+  x: 120, y: 15, rotation: Math.PI / 6
+} ) );
+            </code></pre>
+          </section>
         </section>
 
       </div>
@@ -226,7 +239,8 @@ img.src = imageUrl;
         * Images
         *----------------------------------------------------------------------------*/
         
-        scene = new scenery.Scene( $( '#images-scene' ), { renderer: 'svg' } );
+        scene = new scenery.Scene( $( '#images-scene' ), { renderer: 'svg' } ); // SVG so we don't need extra scene updates
+        var imgScene = scene;
         
         var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/energy-skate-park-basics-thumbnail.png';
         
@@ -238,12 +252,26 @@ img.src = imageUrl;
         var img = document.createElement( 'img' );
         img.onload = function( e ) {
           // can also pass in HTMLImageElement or HTMLCanvasElement references
-          scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
+          imgScene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
         };
         img.src = imageUrl;
         
         scene.updateScene();
         
+        /*---------------------------------------------------------------------------*
+        * DOM
+        *----------------------------------------------------------------------------*/
+        
+        scene = new scenery.Scene( $( '#dom-scene' ) );
+        
+        var element = document.createElement( 'span' );
+        element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
+        // scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
+        scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
+        
+        scene.updateScene();
+        
+        window.scene = scene;
         
       } );
     </script>
