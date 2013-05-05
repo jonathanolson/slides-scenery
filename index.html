@@ -151,14 +151,10 @@ scene.addChild( new scenery.Image( imageUrl, {
   x: 100, y: -30, rotation: Math.PI / 6,
 } ) );
 
+// can also pass in HTMLImageElement or HTMLCanvasElement references
 var img = document.createElement( 'img' );
-img.onload = function( e ) {
-  // can also pass in HTMLImageElement or HTMLCanvasElement references
-  scene.addChild( new scenery.Image( img, {
-    opacity: 0.1, scale: 2
-  } ) );
-};
 img.src = imageUrl;
+scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
             </code></pre>
           </section>
           <section>
@@ -270,12 +266,10 @@ accurateText.left = path.left;   // align the lower text with the path
           x: 100, y: -30, rotation: Math.PI / 6,
         } ) );
         
+        // can also pass in HTMLImageElement or HTMLCanvasElement references
         var img = document.createElement( 'img' );
-        img.onload = function( e ) {
-          // can also pass in HTMLImageElement or HTMLCanvasElement references
-          imgScene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
-        };
         img.src = imageUrl;
+        scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
         
         scene.updateScene();
         
