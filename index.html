@@ -159,7 +159,7 @@ scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
           </section>
           <section>
             <h3>DOM Elements</h3>
-            <div id="dom-scene" class="scene" style="width: 400px; height: 200px;"></div>
+            <div id="dom-scene" class="scene" style="width: 400px; height: 250px;"></div>
             <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var element = document.createElement( 'span' );
 element.innerHTML =
@@ -168,10 +168,12 @@ element.innerHTML =
 scene.addChild( new scenery.DOM( element, {
   x: 120, y: 15, rotation: Math.PI / 6
 } ) );
+
+// HTML, with the same styling and positioning as Text
+scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
+  fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
+} ) );
             </code></pre>
-          </section>
-          <section>
-            <h3>Text / HTMLText?</h3>
           </section>
           <section>
             <h3>Fills and Strokes</h3>
@@ -373,8 +375,12 @@ accurateText.left = path.left;   // align the lower text with the path
         
         var element = document.createElement( 'span' );
         element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
-        // scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
         scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
+        
+        // HTML, with the same styling and positioning as Text
+        scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
+          fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
+        } ) );
         
         scene.updateScene();
         
