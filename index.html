@@ -162,7 +162,7 @@ img.src = imageUrl;
             </code></pre>
           </section>
           <section>
-            <h3>DOM elements</h3>
+            <h3>DOM Elements</h3>
             <div id="dom-scene" class="scene" style="width: 400px; height: 200px;"></div>
             <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var element = document.createElement( 'span' );
@@ -173,6 +173,27 @@ scene.addChild( new scenery.DOM( element, {
   x: 120, y: 15, rotation: Math.PI / 6
 } ) );
             </code></pre>
+          </section>
+          <section>
+            <h3>Axis-aligned Bounds</h3>
+            <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+// vertical layout
+path.top = 20;
+fastText.top = path.bottom + 20;
+accurateText.top = fastText.bottom + 20;
+
+// horizontal layout
+fastText.left = 20;              // offset from the left
+path.centerX = fastText.centerX; // center the path above
+accurateText.left = path.left;   // align the lower text with the path
+            </code></pre>
+          </section>
+          <section>
+            <h3>DOM-like hierarchy</h3>
+          </section>
+          <section>
+            <h3>Not just for trees</h3>
           </section>
         </section>
 
@@ -268,6 +289,61 @@ scene.addChild( new scenery.DOM( element, {
         element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
         // scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
         scene.addChild( new scenery.DOM( element, { x: 120, y: 15, rotation: Math.PI / 6 } ) );
+        
+        scene.updateScene();
+        
+        window.scene = scene;
+        
+        /*---------------------------------------------------------------------------*
+        * Bounds
+        *----------------------------------------------------------------------------*/
+        
+        scene = new scenery.Scene( $( '#bounds-scene' ) );
+        
+        var boundsColor = 'rgba(128,255,128,0.15)';
+        function addBound( node ) {
+          scene.addChild( new scenery.Path( {
+            shape: kite.Shape.bounds( node.bounds ),
+            fill: boundsColor
+          } ) );
+        }
+        var path = new scenery.Path( {
+          shape: new kite.Shape( 'M -100 -100 C -50 50 50 50 0 100' ),
+          stroke: '#eee',
+          lineWidth: 30,
+          rotation: Math.PI / 2,
+          x: 150, y: 140
+        } );
+        var fastText = new scenery.Text( 'Fast Text Bounds', {
+          // top: path.bottom + 10,
+          // left: path.left,
+          font: '40px sans-serif', fill: '#eee'
+        } );
+        var accurateText = new scenery.Text( 'Accurate Text Bounds', {
+          // top: fastText.bottom + 10,
+          // left: path.left,
+          font: '40px sans-serif', fill: '#eee',
+          boundsMethod: 'accurate', renderer: 'canvas'
+        } );
+        
+        // vertical layout
+        path.top = 20;
+        fastText.top = path.bottom + 20;
+        accurateText.top = fastText.bottom + 20;
+        
+        // horizontal layout
+        fastText.left = 20;
+        path.centerX = fastText.centerX;
+        accurateText.left = path.left;
+        
+        addBound( path );
+        scene.addChild( path );
+        
+        addBound( fastText );
+        scene.addChild( fastText );
+        
+        addBound( accurateText );
+        scene.addChild( accurateText );
         
         scene.updateScene();
         
