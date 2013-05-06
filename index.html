@@ -278,18 +278,55 @@ scene.children = [                                               // scene
                       rotation: Math.PI / 4 } ) ];
             </code></pre>
           </section>
-          <section>
+          <!-- <section>
             <h3>User Input</h3>
-            <p>Also cursors</p>
-          </section>
+            <div id="user-input-scene" class="scene" style="width: 340px; height: 300px;"></div>
+            
+          </section> -->
         </section>
         
         <section>
           <section>
             <h2>Design</h2>
+            <ul>
+              <li>Nodes can support multiple renderers (Canvas, SVG, DOM and soon WebGL)</li>
+              <li>Internally, layers allow multiple renderers in the same scene</li>
+              <li>
+                The application (or Scenery itself in the future) can control what renderers
+                are used for what parts of the scene.
+              </li>
+            </ul>
           </section>
           <section>
             <h3>Renderers</h3>
+            <!-- <div style="width: 700px; margin: 0 auto !important;">
+              <div id="canvas-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+              <div id="svg-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+              <div id="dom-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+            </div> -->
+            <ul>
+              <li>
+                <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
+                changing every frame. Performance can be slower on high resolution (Retina) devices
+                when matching pixels 1:1, but in general is fast.
+              </li>
+              <li>
+                <strong>SVG</strong>: Performance varies widely between platforms (superior performance
+                on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
+                than canvas text, and SVG can be a better choice on high-resolution devices.
+              </li>
+              <li>
+                <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
+                cases (untested).
+              </li>
+              <li>
+                <strong>WebGL</strong>: Anticipated highest performance for sprite-like cases, but currently lacks
+                mobile browser support.
+              </li>
+            </ul>
+            <p>
+              <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
+            </p>
           </section>
           <section>
             <h3>Layers</h3>
@@ -310,14 +347,43 @@ scene.children = [                                               // scene
             <h2>Challenges</h2>
           </section>
           <section>
-            <h3>Bounds</h3>
-            <p>Text bounds</p>
-            <p>Path bounds (with strokes)</p>
+            <h3>Text Bounds</h3>
+            <ul>
+              <li>
+                Without accurate or guaranteed overestimated bounds,
+                we can't repaint only changed regions on canvas layers.
+              </li>
+              <li>
+                Latest Canvas spec includes bounding boxes, but is unimplemented.
+              </li>
+              <li>
+                Using DOM / SVG for bounds can be off by unacceptable amounts
+                (height sems to be only based on the font, Unicode combining characters
+                wreak havoc with bounds).
+              </li>
+              <li>
+                For now, applications can select between:
+                <ul>
+                  <li>Using canvas pixel inspection to determine bounds (accurate to arbitrary precision, slow)</li>
+                  <li>Don't allow text in canvas layers</li>
+                  <li>Repaint everything in canvas layers when it contains text</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Stroked Path Bounds</h3>
+            <ul>
+              <li>Again for dirty region repainting, we need accurate bounds</li>
+              <li>No current API, so we implemented the calculation in JavaScript</li>
+            </ul>
           </section>
           <section>
             <h3>Browser Differences</h3>
-            <p>Canvas differences (page)</p>
-            <p>SVG differences (radial gradient, etc)</p>
+            <ul>
+              <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist, SVG is more consistent.</li>
+              <li>Scenery works around some bugs, and constrains parameters (will error instead of being inconsistent).</li>
+            </ul>
           </section>
           <section>
             <h3>Memory</h3>
@@ -358,6 +424,9 @@ scene.children = [                                               // scene
           <section>
             <h3>Input handling</h3>
             <p>Higher level, zoom/pan, etc.</p>
+          </section>
+          <section>
+            <h3>Scenery-based Simulations</h3>
           </section>
           <section>
             <h3>Conclusion</h3>
@@ -1021,6 +1090,74 @@ scene.children = [                                               // scene
           
           scene.updateScene();
         })();
+        
+        /*---------------------------------------------------------------------------*
+        * User Input
+        *----------------------------------------------------------------------------*/
+        
+        // (function(){
+        //   var scene = new scenery.Scene( $( '#user-input-scene' ), { renderer: 'svg' } );
+        //   scene.initializeStandaloneEvents();
+          
+        //   var arrow = new scenery.Path( {
+        //     shape: kite.Shape.regularPolygon( 3, 20 ), fill: '#0f0', stroke: '#000'
+        //   } );
+        //   var section = new scenery.Node( { children: [
+        //     new scenery.Rectangle( 0, 0, 100, 100, {
+        //       fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
+        //     } ),
+        //     new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ), // left
+        //     new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )  // right
+        //   ] } );
+        //   scene.children = [
+        //     new scenery.Node( { children: [ section ], x: 40, y: 40 } ),
+        //     new scenery.Node( { children: [ section ], x: 140, y: 180,
+        //                         rotation: Math.PI / 2 } ),
+        //     new scenery.Node( { children: [ section ], x: 220, y: 90, 
+        //                         rotation: Math.PI / 4 } )
+        //   ];
+          
+        //   section.cursor = 'pointer';
+        //   _.each( scene.children, function( child ) { child.addInputListener( new scenery.SimpleDragHandler() ); } );
+          
+        //   scene.addInputListener( { move: function( event ) { console.log( event.pointer.point.toString() ); } } );
+          
+        //   scene.centerX = 340/2;
+        //   scene.centerY = 300/2;
+          
+        //   scene.updateScene();
+        // })();
+        
+        /*---------------------------------------------------------------------------*
+        * Renderers
+        *----------------------------------------------------------------------------*/
+        
+        // (function(){
+        //   var canvasScene = new scenery.Scene( $( '#canvas-renderer-scene' ), { renderer: 'canvas' } );
+        //   var svgScene = new scenery.Scene( $( '#svg-renderer-scene' ), { renderer: 'svg' } );
+        //   var domScene = new scenery.Scene( $( '#dom-renderer-scene' ), { renderer: 'dom' } );
+          
+        //   canvasScene.addChild( new scenery.Text( 'Canvas', { boundsMethod: 'fastCanvas', bottom: 120, fill: '#eee', fontSize: 24 } ) );
+        //   svgScene.addChild( new scenery.Text( 'SVG', { boundsMethod: 'fastCanvas', bottom: 120, fill: '#eee', fontSize: 24 } ) );
+        //   domScene.addChild( new scenery.Text( 'DOM', { boundsMethod: 'fastCanvas', bottom: 120, fill: '#eee', fontSize: 24 } ) );
+          
+        //   var logo = document.createElement( 'img' );
+        //   logo.addEventListener( 'load', function() {
+        //     var node = new scenery.Image( logo, {
+        //       scale: 0.5,
+        //       rotation: Math.PI / 6,
+        //       x: 130,
+        //       y: 20
+        //     } );
+        //     canvasScene.addChild( node );
+        //     canvasScene.updateScene();
+        //     svgScene.addChild( node );
+        //     svgScene.updateScene();
+        //     domScene.addChild( node );
+        //     domScene.updateScene();
+        //   } );
+        //   logo.src = 'http://phet.colorado.edu/images/phet-logo-yellow.png';
+        // })();
         
       } );
     </script>
