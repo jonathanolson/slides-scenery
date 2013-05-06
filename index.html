@@ -251,31 +251,31 @@ accurateText.left = path.left;   // align the lower text with the path
           </section>
           <section>
             <h3>Directed Acyclic Graphs</h3>
-            <div style="width: 700px; margin: 0 auto !important;">
-              <div id="dag-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+            <div style="width: 800px; margin: 0 auto !important;">
+              <div id="dag-tree-scene" class="scene" style="float: left; width: 440px; height: 500px;"></div>
               <div id="dag-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
             </div>
           </section>
           <section>
             <h3>Directed Acyclic Graphs</h3>
             <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
-var arrow = new scenery.Path( {
-  shape: kite.Shape.regularPolygon( 3, 20 ), fill: '#0f0', stroke: '#000'
+var arrow = new scenery.Path( {                                  // arrow
+  shape: kite.Shape.regularPolygon( 3, 20 ),
+  fill: '#0f0', stroke: '#000'
 } );
-var section = new scenery.Node( { children: [
-  new scenery.Rectangle( 0, 0, 100, 100, {
+var section = new scenery.Node( { children: [                    // section
+  new scenery.Rectangle( 0, 0, 100, 100, {                       // back
     fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
   } ),
-  new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ), // left
-  new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )  // right
+  new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ),     // left
+  new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )      // right
 ] } );
-scene.children = [
-  new scenery.Node( { children: [ section ], x: 40, y: 40 } ),
-  new scenery.Node( { children: [ section ], x: 140, y: 180,
+scene.children = [                                               // scene
+  new scenery.Node( { children: [ section ], x: 40, y: 40 } ),   // bottom
+  new scenery.Node( { children: [ section ], x: 140, y: 180,     // middle
                       rotation: Math.PI / 2 } ),
-  new scenery.Node( { children: [ section ], x: 220, y: 90, 
-                      rotation: Math.PI / 4 } )
-];
+  new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
+                      rotation: Math.PI / 4 } ) ];
             </code></pre>
           </section>
           <section>
@@ -777,6 +777,36 @@ scene.children = [
         * Hierarchy
         *----------------------------------------------------------------------------*/
         
+        var graphHighlight = '#ccc';
+        function graphNode( name ) {
+          var text = new scenery.Text( name, {
+            fontSize: 35, centerX: 0, centerY: 0, fill: '#222'
+          } );
+          var background = new scenery.Path( {
+            shape: kite.Shape.bounds( text.bounds.dilated( 10 ) ),
+            stroke: '#000',
+            lineWidth: 3,
+            fill: graphHighlight
+          } );
+          var node = new scenery.Node( {
+            children: [
+              background,
+              text
+            ]
+          } );
+          return node;
+        }
+        
+        function link( aNode, bNode ) {
+          return new scenery.Path( {
+            shape: kite.Shape.lineSegment( aNode.centerX, 0.5 * aNode.centerY + 0.5 * aNode.bottom,
+                                           bNode.centerX, 0.5 * bNode.centerY + 0.5 * bNode.top ),
+            lineWidth: 5,
+            stroke: graphHighlight,
+            lineCap: 'square'
+          } );
+        }
+        
         (function(){
           var scene = new scenery.Scene( $( '#hier-tree-scene' ) );
           
@@ -786,45 +816,16 @@ scene.children = [
           var cPoint = dot( -140, 160 );
           var dPoint = dot( 0, 160 );
           
-          function graphNode( name, point ) {
-            var text = new scenery.Text( name, {
-              fontSize: 35, centerX: 0, centerY: 0, boundsMethod: 'accurate', fill: '#ccc'
-            } );
-            var background = new scenery.Path( {
-              shape: kite.Shape.bounds( text.bounds.dilated( 10 ) ),
-              stroke: 'rgba(255,255,255,0.3)',
-              fill: '#001820'
-            } );
-            var node = new scenery.Node( {
-              x: point.x,
-              y: point.y,
-              children: [
-                background,
-                text
-              ]
-            } );
-            return node;
-          }
+          var sceneNode = graphNode( 'Scene' ); sceneNode.translation = scenePoint;
+          var aNode = graphNode( 'A' ); aNode.translation = aPoint;
+          var bNode = graphNode( 'B' ); bNode.translation = bPoint;
+          var cNode = graphNode( 'C' ); cNode.translation = cPoint;
+          var dNode = graphNode( 'D' ); dNode.translation = dPoint;
           
-          function link( aNode, bNode ) {
-            scene.addChild( new scenery.Path( {
-              shape: kite.Shape.lineSegment( aNode.centerX, aNode.centerY, bNode.centerX, bNode.centerY ),
-              lineWidth: 3,
-              stroke: '#ccc',
-              lineCap: 'square'
-            } ) );
-          }
-          
-          var sceneNode = graphNode( 'Scene', scenePoint );
-          var aNode = graphNode( 'A', aPoint );
-          var bNode = graphNode( 'B', bPoint );
-          var cNode = graphNode( 'C', cPoint );
-          var dNode = graphNode( 'D', dPoint );
-          
-          link( sceneNode, aNode );
-          link( sceneNode, bNode );
-          link( aNode, cNode );
-          link( aNode, dNode );
+          scene.addChild( link( sceneNode, aNode ) );
+          scene.addChild( link( sceneNode, bNode ) );
+          scene.addChild( link( aNode, cNode ) );
+          scene.addChild( link( aNode, dNode ) );
           
           scene.addChild( sceneNode );
           scene.addChild( aNode );
@@ -930,7 +931,66 @@ scene.children = [
         (function(){
           var scene = new scenery.Scene( $( '#dag-tree-scene' ) );
           
+          var sceneNode = graphNode( 'Scene' );
+          var topNode = graphNode( 'Top' );
+          var middleNode = graphNode( 'Middle' );
+          var bottomNode = graphNode( 'Bottom' );
+          var sectionNode = graphNode( 'Section' );
+          var backNode = graphNode( 'Back' );
+          var leftNode = graphNode( 'Left' );
+          var rightNode = graphNode( 'Right' );
+          var arrowNode = graphNode( 'Arrow' );
           
+          bottomNode.y = 100;
+          middleNode.y = 100;
+          topNode.y = 100;
+          
+          sectionNode.y = 200;
+          
+          backNode.y = 300;
+          leftNode.y = 300;
+          rightNode.y = 300;
+          
+          arrowNode.y = 400;
+          
+          bottomNode.right = middleNode.left - 20;
+          topNode.left = middleNode.right + 20;
+          var offset = -( topNode.right + bottomNode.left ) / 2;
+          bottomNode.x += offset;
+          middleNode.x += offset;
+          topNode.x += offset;
+          
+          backNode.right = leftNode.left - 20;
+          rightNode.left = leftNode.right + 20;
+          offset = -( rightNode.right + backNode.left ) / 2;
+          backNode.x += offset;
+          leftNode.x += offset;
+          rightNode.x += offset;
+          
+          scene.addChild( link( sceneNode, topNode ) );
+          scene.addChild( link( sceneNode, middleNode ) );
+          scene.addChild( link( sceneNode, bottomNode ) );
+          scene.addChild( link( topNode, sectionNode ) );
+          scene.addChild( link( middleNode, sectionNode ) );
+          scene.addChild( link( bottomNode, sectionNode ) );
+          scene.addChild( link( sectionNode, backNode ) );
+          scene.addChild( link( sectionNode, leftNode ) );
+          scene.addChild( link( sectionNode, rightNode ) );
+          scene.addChild( link( leftNode, arrowNode ) );
+          scene.addChild( link( rightNode, arrowNode ) );
+          
+          scene.addChild( sceneNode );
+          scene.addChild( topNode );
+          scene.addChild( middleNode );
+          scene.addChild( bottomNode );
+          scene.addChild( sectionNode );
+          scene.addChild( backNode );
+          scene.addChild( leftNode );
+          scene.addChild( rightNode );
+          scene.addChild( arrowNode );
+          
+          scene.centerX = 440/2;
+          scene.centerY = 500/2;
           
           scene.updateScene();
         })();
