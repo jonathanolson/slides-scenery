@@ -245,8 +245,8 @@ accurateText.left = path.left;   // align the lower text with the path
           <section>
             <h3>Nested Transforms</h3>
             <div style="width: 700px; margin: 0 auto !important;">
-              <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 340px;"></div>
-              <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 340px;"></div>
+              <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+              <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
             </div>
           </section>
           <section>
@@ -752,7 +752,60 @@ accurateText.left = path.left;   // align the lower text with the path
         (function(){
           var scene = new scenery.Scene( $( '#hier-tree-scene' ) );
           
+          var scenePoint = dot( 0, 0 );
+          var aPoint = dot( -70, 80 );
+          var bPoint = dot( 70, 80 );
+          var cPoint = dot( -140, 160 );
+          var dPoint = dot( 0, 160 );
           
+          function graphNode( name, point ) {
+            var text = new scenery.Text( name, {
+              fontSize: 35, centerX: 0, centerY: 0, boundsMethod: 'accurate', fill: '#ccc'
+            } );
+            var background = new scenery.Path( {
+              shape: kite.Shape.bounds( text.bounds.dilated( 10 ) ),
+              stroke: 'rgba(255,255,255,0.3)',
+              fill: '#001820'
+            } );
+            var node = new scenery.Node( {
+              x: point.x,
+              y: point.y,
+              children: [
+                background,
+                text
+              ]
+            } );
+            return node;
+          }
+          
+          function link( aNode, bNode ) {
+            scene.addChild( new scenery.Path( {
+              shape: kite.Shape.lineSegment( aNode.centerX, aNode.centerY, bNode.centerX, bNode.centerY ),
+              lineWidth: 3,
+              stroke: '#ccc',
+              lineCap: 'square'
+            } ) );
+          }
+          
+          var sceneNode = graphNode( 'Scene', scenePoint );
+          var aNode = graphNode( 'A', aPoint );
+          var bNode = graphNode( 'B', bPoint );
+          var cNode = graphNode( 'C', cPoint );
+          var dNode = graphNode( 'D', dPoint );
+          
+          link( sceneNode, aNode );
+          link( sceneNode, bNode );
+          link( aNode, cNode );
+          link( aNode, dNode );
+          
+          scene.addChild( sceneNode );
+          scene.addChild( aNode );
+          scene.addChild( bNode );
+          scene.addChild( cNode );
+          scene.addChild( dNode );
+          
+          scene.centerX = 340/2;
+          scene.centerY = 300/2;
           
           scene.updateScene();
         })();
