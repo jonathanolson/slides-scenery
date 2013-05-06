@@ -243,7 +243,11 @@ accurateText.left = path.left;   // align the lower text with the path
             <aside class="notes">Possible to implement higher-level layout on top</aside>
           </section>
           <section>
-            <h3>DOM-like Hierarchy</h3>
+            <h3>Nested Transforms</h3>
+            <div style="width: 700px; margin: 0 auto !important;">
+              <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 340px;"></div>
+              <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 340px;"></div>
+            </div>
           </section>
           <section>
             <h3>Directed Acyclic Graphs</h3>
@@ -737,6 +741,103 @@ accurateText.left = path.left;   // align the lower text with the path
             lineWidth: 6,
             lineDash: [ 20, 8, 10, 8 ]
           } ) );
+          
+          scene.updateScene();
+        })();
+        
+        /*---------------------------------------------------------------------------*
+        * Hierarchy
+        *----------------------------------------------------------------------------*/
+        
+        (function(){
+          var scene = new scenery.Scene( $( '#hier-tree-scene' ) );
+          
+          
+          
+          scene.updateScene();
+        })();
+        
+        (function(){
+          var scene = new scenery.Scene( $( '#hier-coord-scene' ), { renderer: 'svg' } );
+          
+          function axes( node, name ) {
+            var main = 40;
+            var sub = 38;
+            var width = 2;
+            
+            node.addChild( new scenery.Text( name, {
+              fontSize: 14,
+              top: 1,
+              left: 2,
+              fill: 'rgba(255,255,255,0.6)'
+            } ) );
+            
+            // Y
+            node.addChild( new scenery.Path( {
+              shape: new kite.Shape().moveTo( 0, 0 )
+                                     .lineTo( 0, sub )
+                                     .lineTo( -width, sub )
+                                     .lineTo( 0, main )
+                                     .lineTo( width, sub )
+                                     .lineTo( 0 , sub),
+              stroke: 'rgba(0,255,0,0.7)',
+              lineWidth: 2
+            } ) );
+            
+            // X
+            node.addChild( new scenery.Path( {
+              shape: new kite.Shape().moveTo( 0, 0 )
+                                     .lineTo( sub, 0 )
+                                     .lineTo( sub, -width )
+                                     .lineTo( main, 0 )
+                                     .lineTo( sub, width )
+                                     .lineTo( sub, 0 ),
+              stroke: 'rgba(255,0,0,0.7)',
+              lineWidth: 2
+            } ) );
+            
+            if ( node.parents.length ) {
+              var parent = node.parents[0];
+              var parentPoint = node.localToParentPoint( dot.Vector2.ZERO );
+              parent.insertChild( 0, new scenery.Rectangle( 0, 0, parentPoint.x, parentPoint.y, {
+                stroke: '#888',
+                lineDash: [ 4, 4 ]
+              } ) );
+            }
+          }
+          
+          var a = new scenery.Node( {
+            x: 50,
+            y: 200,
+            rotation: -Math.PI / 6
+          } );
+          scene.addChild( a );
+          
+          var b = new scenery.Text( 'Xyz', {
+            fontSize: 70,
+            centerX: 340/2,
+            top: 50,
+            fill: 'rgba(255,255,255,0.7)'
+          } );
+          scene.addChild( b );
+          
+          var c = new scenery.Rectangle( 0, 0, 200, 60, { x: 30, y: 30, fill: 'rgba(255,255,255,0.4)', rotation: Math.PI / 15 } );
+          a.addChild( c );
+          
+          var d = new scenery.Text( 'Abc', {
+            fontSize: 40,
+            x: 90,
+            top: 60,
+            fill: '#000'
+            // fill: 'rgba(255,200,200,0.6)'
+          } );
+          a.addChild( d );
+          
+          axes( scene, 'scene' );
+          axes( a, 'A' );
+          axes( b, 'B' );
+          axes( c, 'C' );
+          axes( d, 'D' );
           
           scene.updateScene();
         })();
