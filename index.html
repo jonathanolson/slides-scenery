@@ -444,10 +444,10 @@ accurateText.left = path.left;   // align the lower text with the path
         scene = new scenery.Scene( $( '#bounds-scene' ) );
         
         var boundsColor = 'rgba(128,255,128,0.15)';
-        function addBound( node ) {
+        function addBound( node, color ) {
           scene.addChild( new scenery.Path( {
             shape: kite.Shape.bounds( node.bounds ),
-            fill: boundsColor
+            fill: color ? color : boundsColor
           } ) );
         }
         var path = new scenery.Path( {
@@ -479,14 +479,16 @@ accurateText.left = path.left;   // align the lower text with the path
         path.centerX = fastText.centerX;
         accurateText.left = path.left;
         
-        addBound( path );
         scene.addChild( path );
         
-        addBound( fastText );
         scene.addChild( fastText );
         
-        addBound( accurateText );
         scene.addChild( accurateText );
+        
+        addBound( scene, 'rgba(128,128,255,0.1)')
+        addBound( path );
+        addBound( fastText );
+        addBound( accurateText );
         
         scene.updateScene();
         
