@@ -155,7 +155,7 @@ scene.addChild( new scenery.Image( imageUrl, {
 // can also pass in HTMLImageElement or HTMLCanvasElement references
 var img = document.createElement( 'img' );
 img.src = imageUrl;
-scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
+scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
             </code></pre>
           </section>
           <section>
@@ -344,6 +344,15 @@ scene.children = [                                               // scene
         
         <section>
           <section>
+            <h2>Performance</h2>
+          </section>
+          <section>
+            <h3>Canvas dirty bounds visualization?</h3>
+          </section>
+        </section>
+        
+        <section>
+          <section>
             <h2>Challenges</h2>
           </section>
           <section>
@@ -509,7 +518,7 @@ scene.children = [                                               // scene
         // can also pass in HTMLImageElement or HTMLCanvasElement references
         var img = document.createElement( 'img' );
         img.src = imageUrl;
-        scene.addChild( new scenery.Image( img, { opacity: 0.1, scale: 2 } ) );
+        scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
         
         scene.updateScene();
         
