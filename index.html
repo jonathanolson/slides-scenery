@@ -484,138 +484,146 @@ scene.children = [                                               // scene
         * Hello World
         *----------------------------------------------------------------------------*/
         
-        // Create a scene graph over the block-level element. Everything inside is replaced
-        var scene = new scenery.Scene( $( '#hello-world-scene' ) );
-         
-        // Add our text
-        scene.addChild( new scenery.Text( 'Hello World', {
-          centerX: 200, // the center of our text's bounds is at x = 200
-          centerY: 50, // the center of our text's bounds is at y = 50
-          font: '40px sans-serif', fill: '#eee'
-        } ) );
-         
-        // Paint any changes (in this case, our text).
-        scene.updateScene();
+        (function(){
+	        // Create a scene graph over the block-level element. Everything inside is replaced
+	        var scene = new scenery.Scene( $( '#hello-world-scene' ) );
+	         
+	        // Add our text
+	        scene.addChild( new scenery.Text( 'Hello World', {
+	          centerX: 200, // the center of our text's bounds is at x = 200
+	          centerY: 50, // the center of our text's bounds is at y = 50
+	          font: '40px sans-serif', fill: '#eee'
+	        } ) );
+	         
+	        // Paint any changes (in this case, our text).
+	        scene.updateScene();
+        })();
         
         /*---------------------------------------------------------------------------*
         * Shapes
         *----------------------------------------------------------------------------*/
         
-        scene = new scenery.Scene( $( '#shapes-scene' ) );
-        
-        scene.addChild( new scenery.Rectangle( 20, 10, 100, 80, {
-          fill: '#f00', stroke: '#fff', lineWidth: 2
-        } ) );
-        
-        scene.addChild( new scenery.Path( {
-          shape: kite.Shape.regularPolygon( 8, 30 ),
-          fill: '#0f0', x: 170, y: 50
-        } ) );
-        
-        scene.addChild( new scenery.Path( {
-          // shape: new kite.Shape( 'M0 90Q155 50 0 10Z' ),
-          shape: new kite.Shape().lineTo( 0, 90 )
-                                 .quadraticCurveTo( 155, 50, 0, 10 )
-                                 .close(),
-          fill: '#00f', x: 220
-        } ) );
-        
-        scene.updateScene();
+        (function(){
+	        var scene = new scenery.Scene( $( '#shapes-scene' ) );
+	        
+	        scene.addChild( new scenery.Rectangle( 20, 10, 100, 80, {
+	          fill: '#f00', stroke: '#fff', lineWidth: 2
+	        } ) );
+	        
+	        scene.addChild( new scenery.Path( {
+	          shape: kite.Shape.regularPolygon( 8, 30 ),
+	          fill: '#0f0', x: 170, y: 50
+	        } ) );
+	        
+	        scene.addChild( new scenery.Path( {
+	          // shape: new kite.Shape( 'M0 90Q155 50 0 10Z' ),
+	          shape: new kite.Shape().lineTo( 0, 90 )
+	                                 .quadraticCurveTo( 155, 50, 0, 10 )
+	                                 .close(),
+	          fill: '#00f', x: 220
+	        } ) );
+	        
+	        scene.updateScene();
+        })();
         
         /*---------------------------------------------------------------------------*
         * Images
         *----------------------------------------------------------------------------*/
         
-        scene = new scenery.Scene( $( '#images-scene' ), { renderer: 'svg' } ); // SVG so we don't need extra scene updates
-        var imgScene = scene;
-        
-        var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/energy-skate-park-basics-thumbnail.png';
-        
-        // direct URL reference, but cannot position based on bounds
-        scene.addChild( new scenery.Image( imageUrl, {
-          x: 100, y: -30, rotation: Math.PI / 6,
-        } ) );
-        
-        // can also pass in HTMLImageElement or HTMLCanvasElement references
-        var img = document.createElement( 'img' );
-        img.src = imageUrl;
-        scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
-        
-        scene.updateScene();
+        (function(){
+	        var scene = new scenery.Scene( $( '#images-scene' ), { renderer: 'svg' } ); // SVG so we don't need extra scene updates
+	        var imgScene = scene;
+	        
+	        var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/energy-skate-park-basics-thumbnail.png';
+	        
+	        // direct URL reference, but cannot position based on bounds
+	        scene.addChild( new scenery.Image( imageUrl, {
+	          x: 100, y: -30, rotation: Math.PI / 6,
+	        } ) );
+	        
+	        // can also pass in HTMLImageElement or HTMLCanvasElement references
+	        var img = document.createElement( 'img' );
+	        img.src = imageUrl;
+	        scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
+	        
+	        scene.updateScene();
+        })();
         
         /*---------------------------------------------------------------------------*
         * DOM
         *----------------------------------------------------------------------------*/
         
-        scene = new scenery.Scene( $( '#dom-scene' ) );
-        
-        var element = document.createElement( 'span' );
-        element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
-        scene.addChild( new scenery.DOM( element, { x: 120, rotation: Math.PI / 6 } ) );
-        
-        // HTML, with the same styling and positioning as Text
-        scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
-          fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
-        } ) );
-        
-        scene.updateScene();
-        
-        window.scene = scene;
+        (function(){
+	        var scene = new scenery.Scene( $( '#dom-scene' ) );
+	        
+	        var element = document.createElement( 'span' );
+	        element.innerHTML = '<label style="display: inline;">Type in me:</label><input type="text">';
+	        scene.addChild( new scenery.DOM( element, { x: 120, rotation: Math.PI / 6 } ) );
+	        
+	        // HTML, with the same styling and positioning as Text
+	        scene.addChild( new scenery.HTMLText( '<em>Italic</em> and <b>Bold</b> ', {
+	          fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
+	        } ) );
+	        
+	        scene.updateScene();
+        })();
         
         /*---------------------------------------------------------------------------*
         * Bounds
         *----------------------------------------------------------------------------*/
         
-        scene = new scenery.Scene( $( '#bounds-scene' ) );
-        
-        var boundsColor = 'rgba(128,255,128,0.15)';
-        function addBound( node, color ) {
-          scene.addChild( new scenery.Path( {
-            shape: kite.Shape.bounds( node.bounds ),
-            fill: color ? color : boundsColor
-          } ) );
-        }
-        var path = new scenery.Path( {
-          shape: new kite.Shape( 'M -100 -100 C -50 50 50 50 0 100' ),
-          stroke: '#eee',
-          lineWidth: 30,
-          rotation: Math.PI / 2,
-          x: 150, y: 140
-        } );
-        var fastText = new scenery.Text( 'Fast Text Bounds', {
-          // top: path.bottom + 10,
-          // left: path.left,
-          font: '40px sans-serif', fill: '#eee'
-        } );
-        var accurateText = new scenery.Text( 'Accurate Text Bounds', {
-          // top: fastText.bottom + 10,
-          // left: path.left,
-          font: '40px sans-serif', fill: '#eee',
-          boundsMethod: 'accurate', renderer: 'canvas'
-        } );
-        
-        // vertical layout
-        path.top = 20;
-        fastText.top = path.bottom + 20;
-        accurateText.top = fastText.bottom + 20;
-        
-        // horizontal layout
-        fastText.left = 20;
-        path.centerX = fastText.centerX;
-        accurateText.left = path.left;
-        
-        scene.addChild( path );
-        
-        scene.addChild( fastText );
-        
-        scene.addChild( accurateText );
-        
-        addBound( scene, 'rgba(128,128,255,0.1)')
-        addBound( path );
-        addBound( fastText );
-        addBound( accurateText );
-        
-        scene.updateScene();
+        (function(){
+	        var scene = new scenery.Scene( $( '#bounds-scene' ) );
+	        
+	        var boundsColor = 'rgba(128,255,128,0.15)';
+	        function addBound( node, color ) {
+	          scene.addChild( new scenery.Path( {
+	            shape: kite.Shape.bounds( node.bounds ),
+	            fill: color ? color : boundsColor
+	          } ) );
+	        }
+	        var path = new scenery.Path( {
+	          shape: new kite.Shape( 'M -100 -100 C -50 50 50 50 0 100' ),
+	          stroke: '#eee',
+	          lineWidth: 30,
+	          rotation: Math.PI / 2,
+	          x: 150, y: 140
+	        } );
+	        var fastText = new scenery.Text( 'Fast Text Bounds', {
+	          // top: path.bottom + 10,
+	          // left: path.left,
+	          font: '40px sans-serif', fill: '#eee'
+	        } );
+	        var accurateText = new scenery.Text( 'Accurate Text Bounds', {
+	          // top: fastText.bottom + 10,
+	          // left: path.left,
+	          font: '40px sans-serif', fill: '#eee',
+	          boundsMethod: 'accurate', renderer: 'canvas'
+	        } );
+	        
+	        // vertical layout
+	        path.top = 20;
+	        fastText.top = path.bottom + 20;
+	        accurateText.top = fastText.bottom + 20;
+	        
+	        // horizontal layout
+	        fastText.left = 20;
+	        path.centerX = fastText.centerX;
+	        accurateText.left = path.left;
+	        
+	        scene.addChild( path );
+	        
+	        scene.addChild( fastText );
+	        
+	        scene.addChild( accurateText );
+	        
+	        addBound( scene, 'rgba(128,128,255,0.1)')
+	        addBound( path );
+	        addBound( fastText );
+	        addBound( accurateText );
+	        
+	        scene.updateScene();
+        })();
         
         /*---------------------------------------------------------------------------*
         * Fills
