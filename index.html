@@ -251,6 +251,7 @@ accurateText.left = path.left;   // align the lower text with the path
               <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
               <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
             </div>
+            <p>Children of a node are ordered, and stack as expected</p>
           </section>
           <section>
             <h3>Directed Acyclic Graphs</h3>
@@ -896,9 +897,22 @@ scene.children = [                                               // scene
         }
         
         function link( aNode, bNode ) {
+        	var verticalOffset = -5;
+        	var from = dot( aNode.centerX, 0.5 * aNode.centerY + 0.5 * aNode.bottom );
+        	var to = dot.lineLineIntersection( from, bNode.center, dot( bNode.left, bNode.top + verticalOffset ), dot( bNode.right, bNode.top + verticalOffset ) )
+        	            .blend( dot( bNode.centerX, bNode.top + verticalOffset ), 0.5 );
+        	var dir = to.minus( from ).normalized();
+        	var mid = to.minus( dir.times( 7 ) );
+        	var off = dir.perpendicular().times( 3 );
           return new scenery.Path( {
-            shape: kite.Shape.lineSegment( aNode.centerX, 0.5 * aNode.centerY + 0.5 * aNode.bottom,
-                                           bNode.centerX, 0.5 * bNode.centerY + 0.5 * bNode.top ),
+          	shape: new kite.Shape().moveToPoint( from )
+          	                       .lineToPoint( mid )
+          	                       .lineToPoint( mid.plus( off ) )
+          	                       .lineToPoint( to )
+          	                       .lineToPoint( mid.minus( off ) )
+          	                       .lineToPoint( mid ),
+            // shape: kite.Shape.lineSegment( aNode.centerX, 0.5 * aNode.centerY + 0.5 * aNode.bottom,
+                                           // bNode.centerX, 0.5 * bNode.centerY + 0.5 * bNode.top ),
             lineWidth: 5,
             stroke: graphHighlight,
             lineCap: 'square'
@@ -909,10 +923,10 @@ scene.children = [                                               // scene
           var scene = new scenery.Scene( $( '#hier-tree-scene' ) );
           
           var scenePoint = dot( 0, 0 );
-          var aPoint = dot( -70, 80 );
-          var bPoint = dot( 70, 80 );
-          var cPoint = dot( -140, 160 );
-          var dPoint = dot( 0, 160 );
+          var aPoint = dot( -80, 100 );
+          var bPoint = dot( 80, 100 );
+          var cPoint = dot( -160, 200 );
+          var dPoint = dot( 0, 200 );
           
           var sceneNode = graphNode( 'Scene' ); sceneNode.translation = scenePoint;
           var aNode = graphNode( 'A' ); aNode.translation = aPoint;
