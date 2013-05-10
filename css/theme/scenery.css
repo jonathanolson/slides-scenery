@@ -50,6 +50,10 @@ a img {
   box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
 }
 
+.verywhite {
+  color: #eee8d5 !important;
+}
+
 ::selection {
   color: white;
   background: #d33682;
@@ -78,6 +82,9 @@ a img {
 
 .reveal .subtitle {
   font-family: 'Open Sans', sans-serif;
+  font-size: 40px;
+  color: #268bd2;
+  margin-bottom: 50px;
 }
 
 .reveal h1 {

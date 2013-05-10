@@ -34,10 +34,10 @@
           <h3 class="subtitle">A Scene Graph for Modern Browsers</h3>
           <p>
             Jonathan Olson<br>
-            <small>
-              <a href="http://phet.colorado.edu">PhET Interactive Simulations</a>
+            <!-- <small> -->
+              <a href="http://phet.colorado.edu" class="verywhite">PhET Interactive Simulations</a>
               <span style="opacity: 0.5;">|</span> University of Colorado Boulder
-            </small>
+            <!-- </small> -->
           </p>
         </section>
         
@@ -53,6 +53,7 @@
             <a href="http://phet.colorado.edu/en/simulation/fractions-intro"><img src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/></a>
           </section>
           <section>
+          	<h3>PhET Interactive Simulations</h3>
             <ul>
               <li><a href="http://phet.colorado.edu">http://phet.colorado.edu</a></li>
               <li>Previously seen in <a href="http://spot.colorado.edu/~reids/talks/phet-html5-slides-reid-oct-2012.pdf">Sam Reid's talk</a></li>
@@ -90,6 +91,8 @@
               <li><strong><a href="http://paperjs.org/">Paper</a></strong>: less performance</li>
               <li><strong><a href="http://labs.hyperandroid.com/static/caat/">CAAT</a></strong>: less popular, dirty rectangle issues</li>
               <li><strong><a href="http://www.createjs.com/#!/EaselJS">Easel</a></strong>: initially chosen before Scenery, does not track bounds</li>
+              <li><strong><a href="https://github.com/GoodBoyDigital/pixi.js">Pixi.js</a> (new)</strong>: Flash-like API, does not support mixed renderers</li>
+              <li><strong><a href="http://jonobr1.github.io/two.js/">Two.js</a> (new)</strong>: looks promising, doesn't support text or images yet</li>
             </ul>
             <p style="margin-top: 15px;">
               Prototypes indicate that custom Canvas and SVG code and barebones scene graphs
@@ -330,6 +333,19 @@ scene.children = [                                               // scene
           </section>
           <section>
             <h3>Layers</h3>
+            <p class="verywhite">Higher performance by splitting content into layers</p>
+            <ul>
+            	<li>Only need to redraw (or update) changed layers</li>
+            	<li>Each layer can use the best-performing layer for that content</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Canvas Layers</h3>
+            <ul>
+            	<li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
+            	<li>Soon: Option to paint only Nodes whose bounds are in the dirty region</li>
+            	<li>Soon: Cache a subtree to a canvas, so only a drawImage is needed</li>
+            </ul>
           </section>
           <section>
             <h3>User Input</h3>
@@ -648,7 +664,7 @@ scene.children = [                                               // scene
         *----------------------------------------------------------------------------*/
         
         (function(){
-          // TODO: Chrome canvas lineWidth with pattern bug (looks like half size?)
+          // NOTE: Chrome canvas lineWidth with pattern bug (looks like half size?)
           var scene = new scenery.Scene( $( '#strokes-scene' ), { renderer: 'svg' } );
           
           var first = new scenery.Rectangle( 0, 0, 100, 100, 10, 10, { x: 10, y: 10, lineWidth: 5 } );
@@ -695,7 +711,7 @@ scene.children = [                                               // scene
         var strokeMainColor = 'rgba(255,255,255,0.7)';
         var strokeLineColor = '#a50';
         (function(){
-          // TODO: Chrome canvas lineWidth with pattern bug (looks like half size?)
+          // NOTE: Chrome canvas lineWidth with pattern bug (looks like half size?)
           var scene = new scenery.Scene( $( '#line-cap-scene' ) );
           
           scene.scale( 1.5 );
