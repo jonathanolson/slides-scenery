@@ -54,6 +54,10 @@ a img {
   color: #eee8d5 !important;
 }
 
+.clear {
+  clear: both;
+}
+
 ::selection {
   color: white;
   background: #d33682;

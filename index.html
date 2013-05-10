@@ -246,12 +246,17 @@ accurateText.left = path.left;   // align the lower text with the path
             <aside class="notes">Possible to implement higher-level layout on top</aside>
           </section>
           <section>
-            <h3>Nested Transforms</h3>
+            <h3>Scene Graphs</h3>
             <div style="width: 700px; margin: 0 auto !important;">
               <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
               <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
             </div>
-            <p>Children of a node are ordered, and stack as expected</p>
+            <p class="clear">Each node has:</p>
+            <ul>
+              <li>A transform</li>
+              <li>An ordered list of children (rendered bottom to top)</li>
+            </ul>
+            <!-- <p class="clear">Each node has a transform and an ordered list of children</p> -->
           </section>
           <section>
             <h3>Directed Acyclic Graphs</h3>
