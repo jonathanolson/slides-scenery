@@ -374,18 +374,16 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           </section>
           <section>
             <h3>Kite</h3>
+            <p class="verywhite">2D Shape Handling</p>
+            <ul>
+              <li>Create shapes using Canvas-like API or with an SVG path</li>
+              <li>Computes: stroked shapes, shape bounds and shape-line intersection for hit testing, transformed shapes, arbitrary subdivisions, tangents and curvature</li>
+              <li>Soon: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
+              <div id="kite-scene" class="scene" style="width: 700px; height: 256px;"></div>
+            </ul>
           </section>
           <section>
             <h3>Dot</h3>
-          </section>
-        </section>
-        
-        <section>
-          <section>
-            <h2>Performance</h2>
-          </section>
-          <section>
-            <h3>Canvas dirty bounds visualization?</h3>
           </section>
         </section>
         
@@ -517,6 +515,7 @@ greenContainer.layerSplit = true; // will be isolated in a layer
     <script src="js/examples/user-input.js"></script>
     <script src="js/examples/box-layers.js"></script>
     <script src="js/examples/dirty-canvas.js"></script>
+    <script src="js/examples/kite.js"></script>
     <!-- <script src="js/examples/renderers.js"></script> -->
     
     <script src="lib/js/head.min.js"></script>
@@ -568,7 +567,7 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           lastTime = timeNow;
           
           $( '.present .present .scene' ).each( function() {
-            if ( this.scene.timestep ) {
+            if ( this.scene && this.scene.timestep ) {
               this.scene.timestep( timeElapsed );
               
               this.scene.updateScene();
