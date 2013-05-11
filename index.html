@@ -303,6 +303,9 @@ _.each( scene.children, function( section ) {
 section.addInputListener( new scenery.SimpleDragHandler() );
             </code></pre>
           </section>
+          <section>
+            <h3>Scenery-based Simulations TODO</h3>
+          </section>
         </section>
         
         <section>
@@ -315,6 +318,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
                 The application (or Scenery itself in the future) can control what renderers
                 are used for what parts of the scene.
               </li>
+              <li>Mouse/Pen/Multi-touch input handling</li>
             </ul>
           </section>
           <section>
@@ -352,13 +356,16 @@ section.addInputListener( new scenery.SimpleDragHandler() );
             <h3>Layers</h3>
             <p class="verywhite">Higher performance by splitting content into layers</p>
             <ul>
-            	<li>Only need to redraw (or update) changed layers</li>
-            	<li>Each layer can use the best-performing layer for that content</li>
+              <li>Only need to redraw (or update) changed layers</li>
+              <li>Each layer can use the best-performing layer for that content</li>
             </ul>
             <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
             <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 greenContainer.layerSplit = true; // will be isolated in a layer
             </code></pre>
+          </section>
+          <section>
+            <h3>Dynamic Layering TODO</h3>
           </section>
           <section>
             <h3>Canvas Layers</h3>
@@ -373,8 +380,12 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           <section>
             <h3>User Input</h3>
             <ul>
+              <li>Handles DOM3, Touch, Pointer, and MSPointer events</li>
+              <li>Uses Pointer abstraction over Mouse/Pen/Touch, and able to add listeners to the pointer itself</li>
+              <li>DOM-like event model (support for out/over etc. on nodes, can stop propagation)</li>
               <li>Able to batch input events until the start of an animation frame (for smoothness)</li>
               <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
+              <li>Soon: high-level zoom/pan handling (for entire Scene, or for components)</li>
             </ul>
           </section>
           <section>
@@ -411,6 +422,16 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
         <section>
           <section>
             <h2>Challenges</h2>
+            <ul>
+              <li>Text Bounds</li>
+              <li>Stroked Path Bounds</li>
+              <li>Browser Differences</li>
+              <li>Memory</li>
+              <li>Canvases and Events</li>
+              <li>Antialiasing</li>
+              <li>Opacity Across Layers</li>
+              <li>Accessibility</li>
+            </ul>
           </section>
           <section>
             <h3>Text Bounds</h3>
@@ -488,7 +509,10 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           </section>
           <section>
             <h3>Antialiasing</h3>
-            <p>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</p>
+            <ul>
+              <li>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</li>
+              <li>Headache for image-based unit tests (how to determine pass/fail without false readings)</li>
+            </ul>
           </section>
           <section>
             <h3>Opacity Across Layers</h3>
@@ -503,31 +527,12 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
 &lt;!-- layers after --&gt;
             </code></pre>
           </section>
-        </section>
-        
-        <section>
-          <section>
-            <h2>For the Future</h2>
-          </section>
-          <section>
-            <h3>WebGL</h3>
-          </section>
-          <section>
-            <h3>Scratch Canvases</h3>
-          </section>
           <section>
             <h3>Accessibility</h3>
           </section>
-          <section>
-            <h3>CSG</h3>
-          </section>
-          <section>
-            <h3>Input handling</h3>
-            <p>Higher level, zoom/pan, etc.</p>
-          </section>
-          <section>
-            <h3>Scenery-based Simulations</h3>
-          </section>
+        </section>
+        
+        <section>
           <section>
             <h3>Questions or Comments?</h3>
             <p>(or catch me after)</p>
@@ -535,6 +540,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
               <li><a href="http://phetsims.github.io/scenery/">http://phetsims.github.io/scenery</a></li>
               <li><a href="http://phetsims.github.io/kite/">http://phetsims.github.io/kite</a></li>
               <li><a href="http://phetsims.github.io/dot/">http://phetsims.github.io/dot</a></li>
+              <li style="margin-top: 10px;"><a href="http://jonathan-olson.com/slides-scenery/">http://jonathan-olson.com/slides-scenery</a></li>
             </ul>
             
             <p>Thanks to the PhET team, especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
