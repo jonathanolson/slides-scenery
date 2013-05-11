@@ -500,12 +500,12 @@ scene.children = [                                               // scene
     <script src="js/examples/dag.js"></script>
     <!-- <script src="js/examples/user-input.js"></script> -->
     <!-- <script src="js/examples/renderers.js"></script> -->
-
+    
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
-
+    
     <script>
-
+    
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -516,12 +516,12 @@ scene.children = [                                               // scene
         overview: true,
         center: true,
         rollingLinks: false,
-
+        
         // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
         theme: 'scenery', // available themes are in /css/theme
         transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
         transitionSpeed: 'fast', // or default/slow
-
+        
         // Optional libraries used to extend on reveal.js
         dependencies: [
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -534,7 +534,32 @@ scene.children = [                                               // scene
           // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
-
+      
+      scenery.Util.polyfillRequestAnimationFrame();
+      
+      (function(){
+        var lastTime = 0;
+        var timeElapsed = 0;
+        function tick() {
+          window.requestAnimationFrame( tick );
+          
+          var timeNow = new Date().getTime();
+          if ( lastTime != 0 ) {
+            timeElapsed = (timeNow - lastTime) / 1000.0;
+          }
+          lastTime = timeNow;
+          
+          $( '.present .present .scene' ).each( function() {
+            if ( this.scene.timestep ) {
+              this.scene.timestep();
+              
+              this.scene.updateScene();
+            }
+          } );
+        }
+        window.requestAnimationFrame( tick );
+      })();
+      
     </script>
 
   </body>
