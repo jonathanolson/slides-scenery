@@ -287,11 +287,24 @@ scene.children = [                                               // scene
                       rotation: Math.PI / 4 } ) ];
             </code></pre>
           </section>
-          <!-- <section>
+          <section>
             <h3>User Input</h3>
-            <div id="user-input-scene" class="scene" style="width: 340px; height: 300px;"></div>
-            
-          </section> -->
+            <div style="width: 700px; margin: 0 auto !important;">
+              <div id="user-input-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+              <div id="user-input2-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
+            </div>
+            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+section.cursor = 'pointer'; // change the cursor when the mouse is over a section
+
+// move each section individually
+_.each( scene.children, function( section ) {
+  section.addInputListener( new scenery.SimpleDragHandler() );
+} );
+
+// move all sections
+section.addInputListener( new scenery.SimpleDragHandler() );
+            </code></pre>
+          </section>
         </section>
         
         <section>
@@ -498,7 +511,7 @@ scene.children = [                                               // scene
     <script src="js/examples/stroke-styles.js"></script>
     <script src="js/examples/hierarchy.js"></script>
     <script src="js/examples/dag.js"></script>
-    <!-- <script src="js/examples/user-input.js"></script> -->
+    <script src="js/examples/user-input.js"></script>
     <!-- <script src="js/examples/renderers.js"></script> -->
     
     <script src="lib/js/head.min.js"></script>
