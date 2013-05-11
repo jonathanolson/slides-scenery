@@ -373,6 +373,7 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           <section>
             <h3>User Input</h3>
             <ul>
+              <li>Able to batch input events until the start of an animation frame (for smoothness)</li>
               <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
             </ul>
           </section>
@@ -490,8 +491,17 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
             <p>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</p>
           </section>
           <section>
-            <h3>Opacity</h3>
-            
+            <h3>Opacity Across Layers</h3>
+            <div id="opacity-scene" class="scene" style="width: 630px; height: 150px;"></div>
+            <p>If opacity is applied to a node whose children are across different layers, they will need to be handled differently:</p>
+            <pre class="clear"><code data-trim class="html" contenteditable style="font-size: 18px; margin-top: 20px;">
+&lt;!-- layers before --&gt;
+&lt;div style="opacity: 0.6;"&gt;
+  &lt;canvas&gt;&lt;!-- red circle layer --&gt;&lt;/canvas&gt;
+  &lt;svg&gt;&lt;!-- blue circle layer --&gt;&lt;/svg&gt;
+&lt;/div&gt;
+&lt;!-- layers after --&gt;
+            </code></pre>
           </section>
         </section>
         
@@ -566,6 +576,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
     <script src="js/examples/dirty-canvas.js"></script>
     <script src="js/examples/kite.js"></script>
     <script src="js/examples/text-bounds.js"></script>
+    <script src="js/examples/opacity.js"></script>
     <!-- <script src="js/examples/renderers.js"></script> -->
     
     <script src="lib/js/head.min.js"></script>
