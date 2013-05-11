@@ -376,7 +376,7 @@ greenContainer.layerSplit = true; // will be isolated in a layer
             <h3>Kite</h3>
             <p class="verywhite">2D Shape Handling</p>
             <ul>
-              <li>Create shapes using Canvas-like API or with an SVG path</li>
+              <li>Create shapes using Canvas-like API or with SVG paths</li>
               <li>Computes: stroked shapes, shape bounds and shape-line intersection for hit testing, transformed shapes, arbitrary subdivisions, tangents and curvature</li>
               <li>Soon: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
               <div id="kite-scene" class="scene" style="width: 700px; height: 256px;"></div>
@@ -384,6 +384,22 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           </section>
           <section>
             <h3>Dot</h3>
+            <p class="verywhite">Mathematics, with a focus on linear algebra</p>
+            <ul>
+              <li>Core types support <strong>mutable</strong> and <strong>immutable</strong> operations</li>
+              <li>Matrices use typed arrays, 3x3 optimized for Scenery's usage</li>
+              <li>Transform3 lazily evaluates inverses and transposes for calculation of normal/inverse transformation of points, vectors, normals, bounds, shapes and rays</li>
+            </ul>
+            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+var v = dot( 10, -5 ) // shorthand for Vector2, used for points and vectors
+                      // v.x and v.y are the components
+
+v.normalized().times( 5 ).plus( dot( 1, 2 ) ).x  // immutable, matches formulas
+v.normalize().multiply( 5 ).add( dot( 1, 2 ) ).x // mutable, minimizes GCs
+
+dot.Matrix3.rotation2( Math.PI / 6 ).timesVector2( v )    // immutable
+dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
+            </code></pre>
           </section>
         </section>
         
@@ -474,11 +490,15 @@ greenContainer.layerSplit = true; // will be isolated in a layer
             <h3>Scenery-based Simulations</h3>
           </section>
           <section>
-            <h3>Conclusion</h3>
-            <p><a href="http://phetsims.github.io/scenery/">http://phetsims.github.io/scenery</a></p>
+            <h3>Questions?</h3>
+            <p>(or catch me after)</p>
+            <ul style="margin-bottom: 20px">
+              <li><a href="http://phetsims.github.io/scenery/">http://phetsims.github.io/scenery</a></li>
+              <li><a href="http://phetsims.github.io/kite/">http://phetsims.github.io/kite</a></li>
+              <li><a href="http://phetsims.github.io/dot/">http://phetsims.github.io/dot</a></li>
+            </ul>
             
             <p>Thanks to the PhET team, especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
-            <p>Questions? (Also feel free to catch me after)</p>
           </section>
         </section>
         
