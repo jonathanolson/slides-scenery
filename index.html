@@ -355,6 +355,10 @@ section.addInputListener( new scenery.SimpleDragHandler() );
             	<li>Only need to redraw (or update) changed layers</li>
             	<li>Each layer can use the best-performing layer for that content</li>
             </ul>
+            <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
+            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+greenContainer.layerSplit = true; // will be isolated in a layer
+            </code></pre>
           </section>
           <section>
             <h3>Canvas Layers</h3>
@@ -510,6 +514,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
     <script src="js/examples/hierarchy.js"></script>
     <script src="js/examples/dag.js"></script>
     <script src="js/examples/user-input.js"></script>
+    <script src="js/examples/box-layers.js"></script>
     <!-- <script src="js/examples/renderers.js"></script> -->
     
     <script src="lib/js/head.min.js"></script>
@@ -562,7 +567,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
           
           $( '.present .present .scene' ).each( function() {
             if ( this.scene.timestep ) {
-              this.scene.timestep();
+              this.scene.timestep( timeElapsed );
               
               this.scene.updateScene();
             }
