@@ -372,6 +372,9 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           </section>
           <section>
             <h3>User Input</h3>
+            <ul>
+              <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
+            </ul>
           </section>
           <section>
             <h3>Kite</h3>
@@ -413,7 +416,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
             <div id="text-bounds-scene" class="scene" style="width: 530px; height: 100px;"></div>
             <ul>
               <li>
-                Without accurate or guaranteed overestimated bounds,
+                Without accurate or guaranteed upper bounds,
                 we can't repaint only changed regions on canvas layers.
               </li>
               <li>
@@ -438,33 +441,57 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
             <h3>Stroked Path Bounds</h3>
             <ul>
               <li>Again for dirty region repainting, we need accurate bounds</li>
-              <li>No current API, so we implemented the calculation in JavaScript</li>
+              <li>No current browser support, so we <span class="verywhite">implemented it in Kite</span></li>
+              <li>Offset Bézier curves are <strong>not</strong> Bézier curves, so performance suffers if we discretize the curve. Should be possible to break into monotone segments for faster bounds</li>
+              <li>It's possible to use miterLimit to get an upper bound, but it isn't tight</li>
             </ul>
           </section>
           <section>
             <h3>Browser Differences</h3>
             <ul>
-              <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist, SVG is more consistent.</li>
-              <li>Scenery works around some bugs, and constrains parameters (will error instead of being inconsistent).</li>
+              <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist (especially for degenerate cases where the spec is ambiguous)</li>
+              <li>SVG is more consistent (patterns exported from Illustrator and certain radial gradients are current pain points)</li>
+              <li>
+                Scenery works around some bugs, but constrains parameters (will error instead of being inconsistent).
+                <ul>
+                  <li>Filters out degenerate path segments</li>
+                  <li>Forbids ambiguous arc/ellipticalArc parameters</li>
+                  <li>Forbids a subset of radial gradients</li>
+                  <li>Hit testing doesn't test Canvas pixels, so file:// is ok</li>
+                </ul>
+              </li>
             </ul>
           </section>
           <section>
             <h3>Memory</h3>
-            <p>iOS and many canvases</p>
+            <ul>
+              <li>Currently each canvas layer takes up the entire width and height of the scene (a lot of memory).</li>
+              <li>Mobile devices are very memory-constrained, too many layers can cause crashes.</li>
+              <li>Layers will by default be more "fitted" soon, but we don't want to be constantly resizing canvases!</li>
+            </ul>
           </section>
           <section>
             <h3>Canvases and Events</h3>
-            <p>trusted events</p>
-            <p>pointer-events</p>
+            <ul>
+              <li>
+                We haven't found a good way to allow DOM events to pass through a canvas and fire on a DOM element
+                <ul>
+                  <li>Synthesizing events to dispatch to the element will not trigger many default behaviors (for example, :hover)</li>
+                  <li>Event propagation path can't be changed to a different target</li>
+                  <li>'pointer-events: none' allows events to pass through everywhere but IE</li>
+                </ul>
+              </li>
+              <li>For now, we've been using SVG layers with 'pointer-events: none', which DOES work on IE</li>
+              <li>We plan to enforce the "no canvas above DOM" rule, possibly only if their bounds intersect</li>
+            </ul>
           </section>
           <section>
             <h3>Antialiasing</h3>
+            <p>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</p>
           </section>
           <section>
-            <h3>SVG images for Browsers</h3>
-          </section>
-          <section>
-            <h3>Data URL issues if time?</h3>
+            <h3>Opacity</h3>
+            
           </section>
         </section>
         
@@ -492,7 +519,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
             <h3>Scenery-based Simulations</h3>
           </section>
           <section>
-            <h3>Questions?</h3>
+            <h3>Questions or Comments?</h3>
             <p>(or catch me after)</p>
             <ul style="margin-bottom: 20px">
               <li><a href="http://phetsims.github.io/scenery/">http://phetsims.github.io/scenery</a></li>
