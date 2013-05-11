@@ -410,13 +410,14 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           </section>
           <section>
             <h3>Text Bounds</h3>
+            <div id="text-bounds-scene" class="scene" style="width: 530px; height: 100px;"></div>
             <ul>
               <li>
                 Without accurate or guaranteed overestimated bounds,
                 we can't repaint only changed regions on canvas layers.
               </li>
               <li>
-                Latest Canvas spec includes bounding boxes, but is unimplemented.
+                Canvas v5 includes bounds, but is unimplemented.
               </li>
               <li>
                 Using DOM / SVG for bounds can be off by unacceptable amounts
@@ -537,6 +538,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
     <script src="js/examples/box-layers.js"></script>
     <script src="js/examples/dirty-canvas.js"></script>
     <script src="js/examples/kite.js"></script>
+    <script src="js/examples/text-bounds.js"></script>
     <!-- <script src="js/examples/renderers.js"></script> -->
     
     <script src="lib/js/head.min.js"></script>
