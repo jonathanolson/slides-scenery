@@ -625,6 +625,12 @@ body {
 }
 
 /* Global transition speed settings */
+.reveal[data-transition-speed="extrafast"] .slides section {
+	-webkit-transition-duration: 300ms;
+	   -moz-transition-duration: 300ms;
+	    -ms-transition-duration: 300ms;
+	        transition-duration: 300ms;
+}
 .reveal[data-transition-speed="fast"] .slides section {
 	-webkit-transition-duration: 400ms;
 	   -moz-transition-duration: 400ms;
@@ -639,6 +645,12 @@ body {
 }
 
 /* Slide-specific transition speed overrides */
+.reveal .slides section[data-transition-speed="extrafast"] {
+	-webkit-transition-duration: 300ms;
+	   -moz-transition-duration: 300ms;
+	    -ms-transition-duration: 300ms;
+	        transition-duration: 300ms;
+}
 .reveal .slides section[data-transition-speed="fast"] {
 	-webkit-transition-duration: 400ms;
 	   -moz-transition-duration: 400ms;

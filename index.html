@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/default.css" id="theme">
     
     <!-- For syntax highlighting -->
@@ -59,256 +59,253 @@
         </section>
         
         <section>
-          <section>
-            <h2 style="font-size: 56px !important;">PhET Interactive Simulations</h2>
-            <a href="http://phet.colorado.edu" style="position: relative; top: -17px;">http://phet.colorado.edu</a>
-            <p style="margin-top: 10px;">
-              <a href="http://phet.colorado.edu/en/simulation/plate-tectonics"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/plate-tectonics/plate-tectonics-screenshot.png" alt="Plate Tectonics"/></a>
-              <a href="http://phet.colorado.edu/en/simulation/projectile-motion"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/projectile-motion/projectile-motion-screenshot.png" alt="Projectile Motion"/></a>
-              <a href="http://phet.colorado.edu/en/simulation/circuit-construction-kit-dc"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/circuit-construction-kit/circuit-construction-kit-dc-screenshot.png" alt="Circuit Construction Kit"/></a>
-              <br>
-              <a href="http://phet.colorado.edu/en/simulation/build-an-atom"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/build-an-atom/build-an-atom-screenshot.png" alt="Build an Atom"/></a>
-              <a href="http://phet.colorado.edu/en/simulation/beers-law-lab"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/beers-law-lab/beers-law-lab-screenshot.png" alt="Beer's Law Lab"/></a>
-              <a href="http://phet.colorado.edu/en/simulation/fractions-intro"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/></a>
-            </p>
-            <ul>
-              <li>128 free educational simulations in Java and Flash</li>
-              <li>Previously seen in <a href="http://spot.colorado.edu/~reids/talks/phet-html5-slides-reid-oct-2012.pdf">Sam Reid's talk</a></li>
-              <li>Run over 110 million times, translated to 74 languages</li>
-              <li><strong>Moving to HTML5 to be available on more devices</strong></li>
-            </ul>
-          </section>
-          <section>
-            <h3>Graphics Performance</h3>
-            <ul>
-              <li>WebGL not widely available for mobile devices</li>
-              <li>Optimized Canvas and SVG perform better in different situations (and on different devices)</li>
-            </ul>
-            <p style="margin-top: 50px;"><strong>Most libraries focus on either Canvas, SVG or WebGL</strong></p>
-          </section>
-          <section>
-            <h3>Abstraction over Renderers</h3>
-            <ul>
-              <li>
-                Changing the renderer (Canvas/SVG/WebGL/DOM) and optimizations used should be easy
-              </li>
-              <li>
-                Allow parts of the scene to use different renderers
-              </li>
-              <li>
-                In the future, automatically choose the best renderers based on performance hints and browser profiles
-              </li>
-            </ul>
-            <p style="margin-top: 50px;"><strong>Most libraries only support one renderer at a time</strong></p>
-          </section>
-          <section>
-            <h3>Additional Desired Features</h3>
-            <ul>
-              <li>Bounds tracking</li>
-              <li>Input event system (hit regions, multi-touch support, cursor support)</li>
-              <li>Clipping, Masking, Opacity, Gradients, Patterns, Visibility</li>
-              <li>Text, embedded DOM, smooth shapes, CSG</li>
-              <li>Integration with arbitrary content, like 3D with <a href="https://github.com/mrdoob/three.js/">three.js</a></li>
-              <li>DAG (directed acyclic graph) support</li>
-              <li>Debugging utilities</li>
-              <li>Accessibility</li>
-            </ul>
-            <p style="margin-top: 50px;"><strong>Most libraries have few of these</strong></p>
-          </section>
-          <!-- <section>
-            <h3>Other scene graphs</h3>
-            <ul style="font-size: 80%;">
-              <li><strong><a href="http://fabricjs.com/">Fabric</a></strong>: lacks full-featured event handling</li>
-              <li><strong><a href="http://kineticjs.com/">Kinetic</a></strong>: good API with layers. hit regions need all same-origin content (issues when running locally)</li>
-              <li><strong><a href="http://paperjs.org/">Paper</a></strong>: less performance</li>
-              <li><strong><a href="http://labs.hyperandroid.com/static/caat/">CAAT</a></strong>: less popular, dirty rectangle issues</li>
-              <li><strong><a href="http://www.createjs.com/#!/EaselJS">Easel</a></strong>: initially chosen before Scenery, does not track bounds</li>
-              <li><strong><a href="http://www.limejs.com/">LimeJS</a></strong>: similar, but no SVG or curve support</li>
-              <li><strong><a href="https://github.com/GoodBoyDigital/pixi.js">Pixi.js</a> (new)</strong>: Flash-like API, does not support mixed renderers</li>
-              <li><strong><a href="http://jonobr1.github.io/two.js/">Two.js</a> (new)</strong>: looks promising, doesn't support text or images yet</li>
-            </ul>
-            <p style="margin-top: 15px;">
-              Prototypes indicate that custom Canvas and SVG code and barebones scene graphs
-              can get <a href="http://phetsims.github.io/scenery/tests/easel-performance/easel-tests.html">better performance</a>
-            </p>
-          </section> -->
+          <h2 style="font-size: 56px !important;">PhET Interactive Simulations</h2>
+          <a href="http://phet.colorado.edu" style="position: relative; top: -17px;">http://phet.colorado.edu</a>
+          <p style="margin-top: 10px;">
+            <a href="http://phet.colorado.edu/en/simulation/plate-tectonics"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/plate-tectonics/plate-tectonics-screenshot.png" alt="Plate Tectonics"/></a>
+            <a href="http://phet.colorado.edu/en/simulation/projectile-motion"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/projectile-motion/projectile-motion-screenshot.png" alt="Projectile Motion"/></a>
+            <a href="http://phet.colorado.edu/en/simulation/circuit-construction-kit-dc"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/circuit-construction-kit/circuit-construction-kit-dc-screenshot.png" alt="Circuit Construction Kit"/></a>
+            <br>
+            <a href="http://phet.colorado.edu/en/simulation/build-an-atom"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/build-an-atom/build-an-atom-screenshot.png" alt="Build an Atom"/></a>
+            <a href="http://phet.colorado.edu/en/simulation/beers-law-lab"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/beers-law-lab/beers-law-lab-screenshot.png" alt="Beer's Law Lab"/></a>
+            <a href="http://phet.colorado.edu/en/simulation/fractions-intro"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/></a>
+          </p>
+          <ul>
+            <li>128 free educational simulations in Java and Flash</li>
+            <li>Previously seen in <a href="http://spot.colorado.edu/~reids/talks/phet-html5-slides-reid-oct-2012.pdf">Sam Reid's talk</a></li>
+            <li>Run over 110 million times, translated to 74 languages</li>
+            <li><strong>Moving to HTML5 to be available on more devices</strong></li>
+          </ul>
         </section>
+        <section>
+          <h3>Graphics Performance</h3>
+          <ul>
+            <li>WebGL not widely available for mobile devices</li>
+            <li>Optimized Canvas and SVG perform better in different situations (and on different devices)</li>
+          </ul>
+          <p style="margin-top: 50px;"><strong>Most libraries focus on either Canvas, SVG or WebGL</strong></p>
+        </section>
+        <section>
+          <h3>Abstraction over Renderers</h3>
+          <ul>
+            <li>
+              Changing the renderer (Canvas/SVG/WebGL/DOM) and optimizations used should be easy
+            </li>
+            <li>
+              Allow parts of the scene to use different renderers
+            </li>
+            <li>
+              In the future, automatically choose the best renderers based on performance hints and browser profiles
+            </li>
+          </ul>
+          <p style="margin-top: 50px;"><strong>Most libraries only support one renderer at a time</strong></p>
+        </section>
+        <section>
+          <h3>Additional Desired Features</h3>
+          <ul>
+            <li>Bounds tracking</li>
+            <li>Input event system (hit regions, multi-touch support, cursor support)</li>
+            <li>Clipping, Masking, Opacity, Gradients, Patterns, Visibility</li>
+            <li>Text, embedded DOM, smooth shapes, CSG</li>
+            <li>Integration with arbitrary content, like 3D with <a href="https://github.com/mrdoob/three.js/">three.js</a></li>
+            <li>DAG (directed acyclic graph) support</li>
+            <li>Debugging utilities</li>
+            <li>Accessibility</li>
+          </ul>
+          <p style="margin-top: 50px;"><strong>Most libraries have few of these</strong></p>
+        </section>
+        <!-- <section>
+          <h3>Other scene graphs</h3>
+          <ul style="font-size: 80%;">
+            <li><strong><a href="http://fabricjs.com/">Fabric</a></strong>: lacks full-featured event handling</li>
+            <li><strong><a href="http://kineticjs.com/">Kinetic</a></strong>: good API with layers. hit regions need all same-origin content (issues when running locally)</li>
+            <li><strong><a href="http://paperjs.org/">Paper</a></strong>: less performance</li>
+            <li><strong><a href="http://labs.hyperandroid.com/static/caat/">CAAT</a></strong>: less popular, dirty rectangle issues</li>
+            <li><strong><a href="http://www.createjs.com/#!/EaselJS">Easel</a></strong>: initially chosen before Scenery, does not track bounds</li>
+            <li><strong><a href="http://www.limejs.com/">LimeJS</a></strong>: similar, but no SVG or curve support</li>
+            <li><strong><a href="https://github.com/GoodBoyDigital/pixi.js">Pixi.js</a> (new)</strong>: Flash-like API, does not support mixed renderers</li>
+            <li><strong><a href="http://jonobr1.github.io/two.js/">Two.js</a> (new)</strong>: looks promising, doesn't support text or images yet</li>
+          </ul>
+          <p style="margin-top: 15px;">
+            Prototypes indicate that custom Canvas and SVG code and barebones scene graphs
+            can get <a href="http://phetsims.github.io/scenery/tests/easel-performance/easel-tests.html">better performance</a>
+          </p>
+        </section> -->
         
         <section>
-          <section>
-            <h2>A Tour of Scenery</h2>
-            <div id="hello-world-scene" class="scene" style="width: 400px; height: 100px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          <h2>A Tour of Scenery</h2>
+          <div id="hello-world-scene" class="scene" style="width: 400px; height: 100px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 // Create a scene graph over a positioned block-level element
 var scene = new scenery.Scene( $( '#hello-world-scene' ) );
- 
+
 // Add our text
 scene.addChild( new scenery.Text( 'Hello World', {
-  centerX: 200, // the center of our text's bounds is at x = 200
-  centerY: 50, // the center of our text's bounds is at y = 50
-  font: '40px sans-serif', fill: '#eee'
+centerX: 200, // the center of our text's bounds is at x = 200
+centerY: 50, // the center of our text's bounds is at y = 50
+font: '40px sans-serif', fill: '#eee'
 } ) );
- 
+
 // Paint any changes (in this case, our text).
 scene.updateScene();
-            </code></pre>
-          </section>
-          <section>
-            <h3>Shapes</h3>
-            <div id="shapes-scene" class="scene" style="width: 315px; height: 100px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>Shapes</h3>
+          <div id="shapes-scene" class="scene" style="width: 315px; height: 100px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 // simple shapes can be accelerated
 scene.addChild( new scenery.Rectangle( 10, 10, 100, 80, {
-  fill: '#f00', stroke: '#fff', lineWidth: 2
+fill: '#f00', stroke: '#fff', lineWidth: 2
 } ) );
 
 scene.addChild( new scenery.Path( {
-  shape: kite.Shape.regularPolygon( 8, 30 ),
-  fill: '#0f0', x: 150, y: 50
+shape: kite.Shape.regularPolygon( 8, 30 ),
+fill: '#0f0', x: 150, y: 50
 } ) );
 
 scene.addChild( new scenery.Path( {
-  // Canvas-like Path API. Supports SVG Shape( 'M0 90Q155 50 0 10Z' )
-  shape: new kite.Shape().lineTo( 0, 90 )
-                         .quadraticCurveTo( 155, 50, 0, 10 )
-                         .close(),
-  fill: '#00f', x: 190
+// Canvas-like Path API. Supports SVG Shape( 'M0 90Q155 50 0 10Z' )
+shape: new kite.Shape().lineTo( 0, 90 )
+                       .quadraticCurveTo( 155, 50, 0, 10 )
+                       .close(),
+fill: '#00f', x: 190
 } ) );
-            </code></pre>
-          </section>
-          <section>
-            <h3>Images</h3>
-            <div id="images-scene" class="scene" style="width: 260px; height: 100px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>Images</h3>
+          <div id="images-scene" class="scene" style="width: 260px; height: 100px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/' +
-               'energy-skate-park-basics-thumbnail.png';
+             'energy-skate-park-basics-thumbnail.png';
 
 // direct URL reference, but cannot position based on bounds
 scene.addChild( new scenery.Image( imageUrl, {
-  x: 100, y: -30, rotation: Math.PI / 6,
+x: 100, y: -30, rotation: Math.PI / 6,
 } ) );
 
 // can also pass in HTMLImageElement or HTMLCanvasElement references
 var img = document.createElement( 'img' );
 img.src = imageUrl;
 scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
-            </code></pre>
-          </section>
-          <section>
-            <h3>DOM Elements</h3>
-            <div id="dom-scene" class="scene" style="width: 400px; height: 250px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>DOM Elements</h3>
+          <div id="dom-scene" class="scene" style="width: 400px; height: 250px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var element = document.createElement( 'span' );
 element.innerHTML =
-  '&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
-  '&lt;input type="text"&gt;';
+'&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
+'&lt;input type="text"&gt;';
 scene.addChild( new scenery.DOM( element, {
-  x: 120, rotation: Math.PI / 6
+x: 120, rotation: Math.PI / 6
 } ) );
 
 // HTML, with the same styling and positioning as Text
 scene.addChild( new scenery.HTMLText( '&lt;em&gt;Italic&lt;/em&gt; and &lt;b&gt;Bold&lt;/b&gt; ', {
-  fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
+fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
 } ) );
-            </code></pre>
-          </section>
-          <section>
-            <h3>Fills</h3>
-            <div id="fills-scene" class="scene" style="width: 340px; height: 120px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>Fills</h3>
+          <div id="fills-scene" class="scene" style="width: 340px; height: 120px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 first.fill = 'rgba(255,127,0,0.8)'; // full support for CSS colors
 
 // linear gradients
 secondBottom.fill = new scenery.LinearGradient( 0, 0, 100, 0 )
+                             .addColorStop( 0, '#000' )
+                             .addColorStop( 1, '#666' );
+
+// radial gradients
+secondTop.fill = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+                          .addColorStop( 0, '#0ff' )
+                          .addColorStop( 1, 'rgba(0,127,255,0)' );
+
+// patterns
+var transform = dot.Matrix3.rotation2( Math.PI / 6 )
+                         .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+third.fill = new scenery.Pattern( img ).setTransformMatrix( transform );
+          </code></pre>
+        </section>
+        <section>
+          <h3>Strokes</h3>
+          <div id="strokes-scene" class="scene" style="width: 340px; height: 120px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+first.stroke = 'rgba(255,127,0,0.8)'; // full support for CSS colors
+
+// linear gradients
+secondBottom.stroke = new scenery.LinearGradient( 0, 0, 100, 0 )
                                .addColorStop( 0, '#000' )
                                .addColorStop( 1, '#666' );
 
 // radial gradients
-secondTop.fill = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
+secondTop.stroke = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
                             .addColorStop( 0, '#0ff' )
                             .addColorStop( 1, 'rgba(0,127,255,0)' );
 
 // patterns
 var transform = dot.Matrix3.rotation2( Math.PI / 6 )
-                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
-third.fill = new scenery.Pattern( img ).setTransformMatrix( transform );
-            </code></pre>
-          </section>
-          <section>
-            <h3>Strokes</h3>
-            <div id="strokes-scene" class="scene" style="width: 340px; height: 120px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
-first.stroke = 'rgba(255,127,0,0.8)'; // full support for CSS colors
-
-// linear gradients
-secondBottom.stroke = new scenery.LinearGradient( 0, 0, 100, 0 )
-                                 .addColorStop( 0, '#000' )
-                                 .addColorStop( 1, '#666' );
-
-// radial gradients
-secondTop.stroke = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
-                              .addColorStop( 0, '#0ff' )
-                              .addColorStop( 1, 'rgba(0,127,255,0)' );
-
-// patterns
-var transform = dot.Matrix3.rotation2( Math.PI / 6 )
-                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+                         .timesMatrix( dot.Matrix3.scale( 0.3 ) );
 third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
-            </code></pre>
-          </section>
-          <section>
-            <h3>Stroke Styles</h3>
-            <div id="line-cap-scene" class="scene" style="width: 384px; height: 96px;"></div>
-            <div id="line-join-scene" class="scene" style="width: 384px; height: 96px;"></div>
-            <div id="line-dash-scene" class="scene" style="width: 384px; height: 48px;"></div>
-            <p>Supports all Canvas line styles</p>
-          </section>
-          <section>
-            <h3>Scene Graphs</h3>
-            <div style="width: 700px; margin: 0 auto !important;">
-              <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
-              <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
-            </div>
-            <p class="clear">Each node has:</p>
-            <ul>
-              <li>A transform</li>
-              <li>An ordered list of children (rendered bottom to top)</li>
-            </ul>
-            <!-- <p class="clear">Each node has a transform and an ordered list of children</p> -->
-          </section>
-          <section>
-            <h3>Directed Acyclic Graphs</h3>
-            <div style="width: 800px; margin: 0 auto !important;">
-              <div id="dag-tree-scene" class="scene" style="float: left; width: 440px; height: 500px;"></div>
-              <div id="dag-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
-            </div>
-          </section>
-          <section>
-            <h3>Directed Acyclic Graphs</h3>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>Stroke Styles</h3>
+          <div id="line-cap-scene" class="scene" style="width: 384px; height: 96px;"></div>
+          <div id="line-join-scene" class="scene" style="width: 384px; height: 96px;"></div>
+          <div id="line-dash-scene" class="scene" style="width: 384px; height: 48px;"></div>
+          <p>Supports all Canvas line styles</p>
+        </section>
+        <section>
+          <h3>Scene Graphs</h3>
+          <div style="width: 700px; margin: 0 auto !important;">
+            <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+            <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
+          </div>
+          <p class="clear">Each node has:</p>
+          <ul>
+            <li>A transform</li>
+            <li>An ordered list of children (rendered bottom to top)</li>
+          </ul>
+          <!-- <p class="clear">Each node has a transform and an ordered list of children</p> -->
+        </section>
+        <section>
+          <h3>Directed Acyclic Graphs</h3>
+          <div style="width: 800px; margin: 0 auto !important;">
+            <div id="dag-tree-scene" class="scene" style="float: left; width: 440px; height: 500px;"></div>
+            <div id="dag-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
+          </div>
+        </section>
+        <section>
+          <h3>Directed Acyclic Graphs</h3>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var arrow = new scenery.Path( {                                  // arrow
-  shape: kite.Shape.regularPolygon( 3, 20 ),
-  fill: '#0f0', stroke: '#000'
+shape: kite.Shape.regularPolygon( 3, 20 ),
+fill: '#0f0', stroke: '#000'
 } );
 var section = new scenery.Node( { children: [                    // section
-  new scenery.Rectangle( 0, 0, 100, 100, {                       // back
-    fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
-  } ),
-  new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ),     // left
-  new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )      // right
+new scenery.Rectangle( 0, 0, 100, 100, {                       // back
+  fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
+} ),
+new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ),     // left
+new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )      // right
 ] } );
 scene.children = [                                               // scene
-  new scenery.Node( { children: [ section ], x: 40, y: 40 } ),   // bottom
-  new scenery.Node( { children: [ section ], x: 140, y: 180,     // middle
-                      rotation: Math.PI / 2 } ),
-  new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
-                      rotation: Math.PI / 4 } ) ];
-            </code></pre>
-          </section>
-          <section>
-            <h3>Axis-aligned Bounds</h3>
-            <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+new scenery.Node( { children: [ section ], x: 40, y: 40 } ),   // bottom
+new scenery.Node( { children: [ section ], x: 140, y: 180,     // middle
+                    rotation: Math.PI / 2 } ),
+new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
+                    rotation: Math.PI / 4 } ) ];
+          </code></pre>
+        </section>
+        <section>
+          <h3>Axis-aligned Bounds</h3>
+          <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
+          <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 // vertical layout
 path.top = 20;
 fastText.top = path.bottom + 20;
@@ -318,278 +315,271 @@ accurateText.top = fastText.bottom + 20;
 fastText.left = 20;              // offset from the left
 path.centerX = fastText.centerX; // center the path above
 accurateText.left = path.left;   // align the lower text with the path
-            </code></pre>
-            <aside class="notes">Possible to implement higher-level layout on top</aside>
-          </section>
-          <section>
-            <h3>User Input</h3>
-            <div style="width: 700px; margin: 0 auto !important;">
-              <div id="user-input-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
-              <div id="user-input2-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
-            </div>
-            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+          <aside class="notes">Possible to implement higher-level layout on top</aside>
+        </section>
+        <section>
+          <h3>User Input</h3>
+          <div style="width: 700px; margin: 0 auto !important;">
+            <div id="user-input-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+            <div id="user-input2-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
+          </div>
+          <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 section.cursor = 'pointer'; // change the cursor when the mouse is over a section
 
 // move each section individually
 _.each( scene.children, function( section ) {
-  section.addInputListener( new scenery.SimpleDragHandler() );
+section.addInputListener( new scenery.SimpleDragHandler() );
 } );
 
 // move all sections
 section.addInputListener( new scenery.SimpleDragHandler() );
-            </code></pre>
-          </section>
-          <section>
-            <h3>Scenery-based Simulations</h3>
-            <p>Under development</p>
-            <ul>
-              <li><a href="http://localhost/phet/git/forces-and-motion-basics/forces-and-motion-basics.html" target="_blank">Forces and Motion: Basics</a></li>
-              <li><a href="http://localhost/phet/git/beers-law-lab/beers-law-lab.html" target="_blank">Beer's Law Lab</a></li>
-              <li>Build an Atom</li>
-              <li>Build a Molecule</li>
-              <li>Balloons and Static Electricity</li>
-            </ul>
-          </section>
+          </code></pre>
+        </section>
+        <section>
+          <h3>Scenery-based Simulations</h3>
+          <p>Under development</p>
+          <ul>
+            <li><a href="http://localhost/phet/git/forces-and-motion-basics/forces-and-motion-basics.html" target="_blank">Forces and Motion: Basics</a></li>
+            <li><a href="http://localhost/phet/git/beers-law-lab/beers-law-lab.html" target="_blank">Beer's Law Lab</a></li>
+            <li>Build an Atom</li>
+            <li>Build a Molecule</li>
+            <li>Balloons and Static Electricity</li>
+          </ul>
         </section>
         
         <section>
-          <section>
-            <h2>Design</h2>
-            <ul>
-              <li>Nodes can support multiple renderers (Canvas, SVG, DOM and soon WebGL)</li>
-              <li>Internally, layers allow multiple renderers in the same scene</li>
-              <li>
-                The application (or Scenery itself in the future) can control what renderers
-                are used for what parts of the scene.
-              </li>
-              <li>Mouse/Pen/Multi-touch input handling</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Renderers</h3>
-            <!-- <div style="width: 700px; margin: 0 auto !important;">
-              <div id="canvas-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-              <div id="svg-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-              <div id="dom-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-            </div> -->
-            <ul>
-              <li>
-                <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
-                changing every frame. Performance can be slower on high resolution (Retina) devices
-                when matching pixels 1:1, but in general is fast.
-              </li>
-              <li>
-                <strong>SVG</strong>: Performance varies widely between platforms (superior performance
-                on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
-                than canvas text, and SVG can be a better choice on high-resolution devices.
-              </li>
-              <li>
-                <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
-                cases (untested).
-              </li>
-              <li>
-                <strong>WebGL</strong>: Anticipated highest performance for sprite-like cases, but currently lacks
-                mobile browser support.
-              </li>
-            </ul>
-            <p>
-              <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
-            </p>
-          </section>
-          <section>
-            <h3>Layers</h3>
-            <p class="verywhite">Higher performance by splitting content into layers</p>
-            <ul>
-              <li>Only need to redraw (or update) changed layers</li>
-              <li>Each layer can use the best-performing layer for that content</li>
-            </ul>
-            <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
-            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          <h2>Design</h2>
+          <ul>
+            <li>Nodes can support multiple renderers (Canvas, SVG, DOM and soon WebGL)</li>
+            <li>Internally, layers allow multiple renderers in the same scene</li>
+            <li>
+              The application (or Scenery itself in the future) can control what renderers
+              are used for what parts of the scene.
+            </li>
+            <li>Mouse/Pen/Multi-touch input handling</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Renderers</h3>
+          <!-- <div style="width: 700px; margin: 0 auto !important;">
+            <div id="canvas-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+            <div id="svg-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+            <div id="dom-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
+          </div> -->
+          <ul>
+            <li>
+              <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
+              changing every frame. Performance can be slower on high resolution (Retina) devices
+              when matching pixels 1:1, but in general is fast.
+            </li>
+            <li>
+              <strong>SVG</strong>: Performance varies widely between platforms (superior performance
+              on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
+              than canvas text, and SVG can be a better choice on high-resolution devices.
+            </li>
+            <li>
+              <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
+              cases (untested).
+            </li>
+            <li>
+              <strong>WebGL</strong>: Anticipated highest performance for sprite-like cases, but currently lacks
+              mobile browser support.
+            </li>
+          </ul>
+          <p>
+            <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
+          </p>
+        </section>
+        <section>
+          <h3>Layers</h3>
+          <p class="verywhite">Higher performance by splitting content into layers</p>
+          <ul>
+            <li>Only need to redraw (or update) changed layers</li>
+            <li>Each layer can use the best-performing layer for that content</li>
+          </ul>
+          <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
+          <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 greenContainer.layerSplit = true; // will be isolated in a layer
-            </code></pre>
-          </section>
-          <section>
-            <h3>Dynamic Layering TODO</h3>
-          </section>
-          <section>
-            <h3>Canvas Layers</h3>
-            <ul>
-              <li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
-            	<li>Filters duplicate state change calls to the Canvas API</li>
-            	<li>Soon: Paint only nodes whose bounds are in the dirty region</li>
-            	<li>Soon: Off-screen subtree rendering for faster drawing</li>
-              <div id="dirty-canvas-scene" class="scene" style="width: 300px; height: 300px;"></div>
-            </ul>
-          </section>
-          <section>
-            <h3>User Input</h3>
-            <ul>
-              <li>Handles DOM3, Touch, Pointer, and MSPointer events</li>
-              <li>Uses Pointer abstraction over Mouse/Pen/Touch, and able to add listeners to the pointer itself</li>
-              <li>DOM-like event model (support for out/over etc. on nodes, can stop propagation)</li>
-              <li>Able to batch input events until the start of an animation frame (for smoothness)</li>
-              <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
-              <li>Soon: high-level zoom/pan handling (for entire Scene, or for components)</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Kite</h3>
-            <p class="verywhite">2D Shape Handling</p>
-            <ul>
-              <li>Create shapes using Canvas-like API or with SVG paths</li>
-              <li>Computes: stroked shapes, shape bounds and shape-line intersection for hit testing, transformed shapes, arbitrary subdivisions, tangents and curvature</li>
-              <li>Soon: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
-              <div id="kite-scene" class="scene" style="width: 700px; height: 256px;"></div>
-            </ul>
-          </section>
-          <section>
-            <h3>Dot</h3>
-            <p class="verywhite">Mathematics, with a focus on linear algebra</p>
-            <ul>
-              <li>Core types support <strong>mutable</strong> and <strong>immutable</strong> operations</li>
-              <li>Matrices use typed arrays, 3x3 optimized for Scenery's usage</li>
-              <li>Transform3 lazily evaluates inverses and transposes for calculation of normal/inverse transformation of points, vectors, normals, bounds, shapes and rays</li>
-            </ul>
-            <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+          <h3>Dynamic Layering TODO</h3>
+        </section>
+        <section>
+          <h3>Canvas Layers</h3>
+          <ul>
+            <li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
+          	<li>Filters duplicate state change calls to the Canvas API</li>
+          	<li>Soon: Paint only nodes whose bounds are in the dirty region</li>
+          	<li>Soon: Off-screen subtree rendering for faster drawing</li>
+            <div id="dirty-canvas-scene" class="scene" style="width: 300px; height: 300px;"></div>
+          </ul>
+        </section>
+        <section>
+          <h3>User Input</h3>
+          <ul>
+            <li>Handles DOM3, Touch, Pointer, and MSPointer events</li>
+            <li>Uses Pointer abstraction over Mouse/Pen/Touch, and able to add listeners to the pointer itself</li>
+            <li>DOM-like event model (support for out/over etc. on nodes, can stop propagation)</li>
+            <li>Able to batch input events until the start of an animation frame (for smoothness)</li>
+            <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
+            <li>Soon: high-level zoom/pan handling (for entire Scene, or for components)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Kite</h3>
+          <p class="verywhite">2D Shape Handling</p>
+          <ul>
+            <li>Create shapes using Canvas-like API or with SVG paths</li>
+            <li>Computes: stroked shapes, shape bounds and shape-line intersection for hit testing, transformed shapes, arbitrary subdivisions, tangents and curvature</li>
+            <li>Soon: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
+            <div id="kite-scene" class="scene" style="width: 700px; height: 256px;"></div>
+          </ul>
+        </section>
+        <section>
+          <h3>Dot</h3>
+          <p class="verywhite">Mathematics, with a focus on linear algebra</p>
+          <ul>
+            <li>Core types support <strong>mutable</strong> and <strong>immutable</strong> operations</li>
+            <li>Matrices use typed arrays, 3x3 optimized for Scenery's usage</li>
+            <li>Transform3 lazily evaluates inverses and transposes for calculation of normal/inverse transformation of points, vectors, normals, bounds, shapes and rays</li>
+          </ul>
+          <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var v = dot( 10, -5 ) // shorthand for Vector2, used for points and vectors
-                      // v.x and v.y are the components
+                    // v.x and v.y are the components
 
 v.normalized().times( 5 ).plus( dot( 1, 2 ) ).x  // immutable, matches formulas
 v.normalize().multiply( 5 ).add( dot( 1, 2 ) ).x // mutable, minimizes GCs
 
 dot.Matrix3.rotation2( Math.PI / 6 ).timesVector2( v )    // immutable
 dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
-            </code></pre>
-          </section>
+          </code></pre>
         </section>
         
         <section>
-          <section>
-            <h2>Challenges</h2>
-            <ul>
-              <li>Text Bounds</li>
-              <li>Stroked Path Bounds</li>
-              <li>Browser Differences</li>
-              <li>Memory</li>
-              <li>Canvases and Events</li>
-              <li>Antialiasing</li>
-              <li>Opacity Across Layers</li>
-              <li>Accessibility</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Text Bounds</h3>
-            <div id="text-bounds-scene" class="scene" style="width: 530px; height: 100px;"></div>
-            <ul>
-              <li>
-                Without accurate or guaranteed upper bounds,
-                we can't repaint only changed regions on canvas layers.
-              </li>
-              <li>
-                Canvas v5 includes bounds, but is unimplemented.
-              </li>
-              <li>
-                Using DOM / SVG for bounds can be off by unacceptable amounts
-                (height sems to be only based on the font, Unicode combining characters
-                wreak havoc with bounds).
-              </li>
-              <li>
-                For now, applications can select between:
-                <ul>
-                  <li>Using canvas pixel inspection to determine bounds (accurate to arbitrary precision, slow)</li>
-                  <li>Don't allow text in canvas layers</li>
-                  <li>Repaint everything in canvas layers when it contains text</li>
-                </ul>
-              </li>
-            </ul>
-          </section>
-          <section>
-            <h3>Stroked Path Bounds</h3>
-            <ul>
-              <li>Again for dirty region repainting, we need accurate bounds</li>
-              <li>No current browser support, so we <span class="verywhite">implemented it in Kite</span></li>
-              <li>Offset Bézier curves are <strong>not</strong> Bézier curves, so performance suffers if we discretize the curve. Should be possible to break into monotone segments for faster bounds</li>
-              <li>It's possible to use miterLimit to get an upper bound, but it isn't tight</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Browser Differences</h3>
-            <ul>
-              <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist (especially for degenerate cases where the spec is ambiguous)</li>
-              <li>SVG is more consistent (patterns exported from Illustrator and certain radial gradients are current pain points)</li>
-              <li>
-                Scenery works around some bugs, but constrains parameters (will error instead of being inconsistent).
-                <ul>
-                  <li>Filters out degenerate path segments</li>
-                  <li>Forbids ambiguous arc/ellipticalArc parameters</li>
-                  <li>Forbids a subset of radial gradients</li>
-                  <li>Hit testing doesn't test Canvas pixels, so file:// is ok</li>
-                </ul>
-              </li>
-            </ul>
-          </section>
-          <section>
-            <h3>Memory</h3>
-            <ul>
-              <li>Currently each canvas layer takes up the entire width and height of the scene (a lot of memory).</li>
-              <li>Mobile devices are very memory-constrained, too many layers can cause crashes.</li>
-              <li>Layers will by default be more "fitted" soon, but we don't want to be constantly resizing canvases!</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Canvases and Events</h3>
-            <ul>
-              <li>
-                We haven't found a good way to allow DOM events to pass through a canvas and fire on a DOM element
-                <ul>
-                  <li>Synthesizing events to dispatch to the element will not trigger many default behaviors (for example, :hover)</li>
-                  <li>Event propagation path can't be changed to a different target</li>
-                  <li>'pointer-events: none' allows events to pass through everywhere but IE</li>
-                </ul>
-              </li>
-              <li>For now, we've been using SVG layers with 'pointer-events: none', which DOES work on IE</li>
-              <li>We plan to enforce the "no canvas above DOM" rule, possibly only if their bounds intersect</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Antialiasing</h3>
-            <ul>
-              <li>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</li>
-              <li>Headache for image-based unit tests (how to determine pass/fail without false readings)</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Opacity Across Layers</h3>
-            <div id="opacity-scene" class="scene" style="width: 630px; height: 150px;"></div>
-            <p>If opacity is applied to a node whose children are across different layers, they will need to be handled differently:</p>
-            <pre class="clear"><code data-trim class="html" contenteditable style="font-size: 18px; margin-top: 20px;">
+          <h2>Challenges</h2>
+          <ul>
+            <li>Text Bounds</li>
+            <li>Stroked Path Bounds</li>
+            <li>Browser Differences</li>
+            <li>Memory</li>
+            <li>Canvases and Events</li>
+            <li>Antialiasing</li>
+            <li>Opacity Across Layers</li>
+            <li>Accessibility</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Text Bounds</h3>
+          <div id="text-bounds-scene" class="scene" style="width: 530px; height: 100px;"></div>
+          <ul>
+            <li>
+              Without accurate or guaranteed upper bounds,
+              we can't repaint only changed regions on canvas layers.
+            </li>
+            <li>
+              Canvas v5 includes bounds, but is unimplemented.
+            </li>
+            <li>
+              Using DOM / SVG for bounds can be off by unacceptable amounts
+              (height sems to be only based on the font, Unicode combining characters
+              wreak havoc with bounds).
+            </li>
+            <li>
+              For now, applications can select between:
+              <ul>
+                <li>Using canvas pixel inspection to determine bounds (accurate to arbitrary precision, slow)</li>
+                <li>Don't allow text in canvas layers</li>
+                <li>Repaint everything in canvas layers when it contains text</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Stroked Path Bounds</h3>
+          <ul>
+            <li>Again for dirty region repainting, we need accurate bounds</li>
+            <li>No current browser support, so we <span class="verywhite">implemented it in Kite</span></li>
+            <li>Offset Bézier curves are <strong>not</strong> Bézier curves, so performance suffers if we discretize the curve. Should be possible to break into monotone segments for faster bounds</li>
+            <li>It's possible to use miterLimit to get an upper bound, but it isn't tight</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Browser Differences</h3>
+          <ul>
+            <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist (especially for degenerate cases where the spec is ambiguous)</li>
+            <li>SVG is more consistent (patterns exported from Illustrator and certain radial gradients are current pain points)</li>
+            <li>
+              Scenery works around some bugs, but constrains parameters (will error instead of being inconsistent).
+              <ul>
+                <li>Filters out degenerate path segments</li>
+                <li>Forbids ambiguous arc/ellipticalArc parameters</li>
+                <li>Forbids a subset of radial gradients</li>
+                <li>Hit testing doesn't test Canvas pixels, so file:// is ok</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Memory</h3>
+          <ul>
+            <li>Currently each canvas layer takes up the entire width and height of the scene (a lot of memory).</li>
+            <li>Mobile devices are very memory-constrained, too many layers can cause crashes.</li>
+            <li>Layers will by default be more "fitted" soon, but we don't want to be constantly resizing canvases!</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Canvases and Events</h3>
+          <ul>
+            <li>
+              We haven't found a good way to allow DOM events to pass through a canvas and fire on a DOM element
+              <ul>
+                <li>Synthesizing events to dispatch to the element will not trigger many default behaviors (for example, :hover)</li>
+                <li>Event propagation path can't be changed to a different target</li>
+                <li>'pointer-events: none' allows events to pass through everywhere but IE</li>
+              </ul>
+            </li>
+            <li>For now, we've been using SVG layers with 'pointer-events: none', which DOES work on IE</li>
+            <li>We plan to enforce the "no canvas above DOM" rule, possibly only if their bounds intersect</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Antialiasing</h3>
+          <ul>
+            <li>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</li>
+            <li>Headache for image-based unit tests (how to determine pass/fail without false readings)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Opacity Across Layers</h3>
+          <div id="opacity-scene" class="scene" style="width: 630px; height: 150px;"></div>
+          <p>If opacity is applied to a node whose children are across different layers, they will need to be handled differently:</p>
+          <pre class="clear"><code data-trim class="html" contenteditable style="font-size: 18px; margin-top: 20px;">
 &lt;!-- layers before --&gt;
 &lt;div style="opacity: 0.6;"&gt;
-  &lt;canvas&gt;&lt;!-- red circle layer --&gt;&lt;/canvas&gt;
-  &lt;svg&gt;&lt;!-- blue circle layer --&gt;&lt;/svg&gt;
+&lt;canvas&gt;&lt;!-- red circle layer --&gt;&lt;/canvas&gt;
+&lt;svg&gt;&lt;!-- blue circle layer --&gt;&lt;/svg&gt;
 &lt;/div&gt;
 &lt;!-- layers after --&gt;
-            </code></pre>
-          </section>
-          <section>
-            <h3>Accessibility TODO</h3>
-          </section>
+          </code></pre>
+        </section>
+        <section>
+          <h3>Accessibility TODO</h3>
         </section>
         
         <section>
-          <section>
-            <h3>Questions or Comments?</h3>
-            <p>(or catch me after)</p>
-            <ul style="margin-bottom: 80px; margin-top: 30px;">
-              <li>Scenery: <a href="http://phetsims.github.io/scenery/">phetsims.github.io/scenery</a></li>
-              <li style="margin-top: 10px;">These slides: <a href="http://jonathan-olson.com/slides-scenery/">jonathan-olson.com/slides-scenery</a></li>
-            </ul>
-            
-            <p>Jonathan Olson</p>
-            <p><a href="https://github.com/jonathanolson">github.com/jonathanolson</a> &nbsp;|&nbsp; <a href="mailto://jonathan.olson@colorado.edu">jonathan.olson@colorado.edu</a></p>
-            
-            <p style="margin-top: 50px;">Thanks to the PhET team (<a href="http://phet.colorado.edu">phet.colorado.edu</a>), especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
-          </section>
+          <h3>Questions or Comments?</h3>
+          <p>(or catch me after)</p>
+          <ul style="margin-bottom: 80px; margin-top: 30px;">
+            <li>Scenery: <a href="http://phetsims.github.io/scenery/">phetsims.github.io/scenery</a></li>
+            <li style="margin-top: 10px;">These slides: <a href="http://jonathan-olson.com/slides-scenery/">jonathan-olson.com/slides-scenery</a></li>
+          </ul>
+          
+          <p>Jonathan Olson</p>
+          <p><a href="https://github.com/jonathanolson">github.com/jonathanolson</a> &nbsp;|&nbsp; <a href="mailto://jonathan.olson@colorado.edu">jonathan.olson@colorado.edu</a></p>
+          
+          <p style="margin-top: 50px;">Thanks to the PhET team (<a href="http://phet.colorado.edu">phet.colorado.edu</a>), especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
         </section>
         
       </div>
@@ -649,7 +639,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
         // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
         theme: 'scenery', // available themes are in /css/theme
         transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
-        transitionSpeed: 'fast', // or default/slow
+        transitionSpeed: 'extrafast', // or default/slow
         
         // Optional libraries used to extend on reveal.js
         dependencies: [
@@ -678,7 +668,7 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           }
           lastTime = timeNow;
           
-          $( '.present .present .scene' ).each( function() {
+          $( '.present .scene' ).each( function() {
             if ( this.scene && this.scene.timestep ) {
               this.scene.timestep( timeElapsed );
               
