@@ -36,7 +36,6 @@
         Integrate canvas diff?
         
         * Accessibility prototypes
-        Note about current performance (not ideal yet)
       -->
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -401,6 +400,7 @@ _.each( scene.children, function( section ) {
             <li>Balloons and Static Electricity</li>
           </ul>
           <p style="margin-top: 20px;"><a href="http://requirejs.org/">Require.js</a> for modularization</p>
+          <p>Mostly feature-complete, working on performance</p>
         </section>
         
 <!--         <section>
@@ -512,7 +512,9 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           </code></pre>
         </section>
         <section>
-          <h3>Accessibility TODO</h3>
+          <h3>Accessibility</h3>
+          <p>Mixed Canvas/SVG/DOM not accessible by default</p>
+          <p style="margin-top: 50px;"><span class="soon">Soon</span>: Creating <a href="http://localhost/phet/git/forces-and-motion-basics/forces-and-motion-basics.html" target="_blank">DOM peers for each interactive node</a>, with subtree control over the tab order</p>
         </section>
         
         <section>
