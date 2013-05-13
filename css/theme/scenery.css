@@ -76,9 +76,21 @@ iframe {
   margin: 0 !important; padding: 0 !important;
 }
 
+table {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6) !important;
+}
+
 table td img {
   border: none !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6) !important;
+  width: 40px !important;
+  height: 40px !important;
+  margin: 0 10px !important;
+}
+
+table td {
+  vertical-align: middle !important;
+  font-size: 70% !important;
 }
 
 ::selection {
