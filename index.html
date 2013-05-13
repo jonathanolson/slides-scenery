@@ -25,6 +25,25 @@
   </head>
   <body>
     <div class="reveal">
+      
+      <!--
+        TODO:
+        
+        Overview:
+        PhET (more about what we are?)
+        Problem (need, couldn't find)
+        Scenery (created out of need)
+        
+        Note about browser support
+        Overhead disadvantage
+        Cut many "Challenge" details?
+        Brand Scenery?
+        * Accessibility prototypes
+        Note about current performance (not ideal yet)
+        Note that Node is like Object3D / etc.
+        Better fonts, examine slide tips
+        High-constrast mode
+      -->
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
@@ -41,54 +60,70 @@
         
         <section>
           <section>
-            <h2>PhET Simulations</h2>
-            <p>128 educational simulations in Java / Flash</p>
-            <a href="http://phet.colorado.edu/en/simulation/plate-tectonics"><img src="http://phet.colorado.edu/sims/plate-tectonics/plate-tectonics-screenshot.png" alt="Plate Tectonics"/></a>
-            <a href="http://phet.colorado.edu/en/simulation/projectile-motion"><img src="http://phet.colorado.edu/sims/projectile-motion/projectile-motion-screenshot.png" alt="Projectile Motion"/></a>
-            <a href="http://phet.colorado.edu/en/simulation/circuit-construction-kit-dc"><img src="http://phet.colorado.edu/sims/circuit-construction-kit/circuit-construction-kit-dc-screenshot.png" alt="Circuit Construction Kit"/></a>
-            <a href="http://phet.colorado.edu/en/simulation/build-an-atom"><img src="http://phet.colorado.edu/sims/build-an-atom/build-an-atom-screenshot.png" alt="Build an Atom"/></a>
-            <a href="http://phet.colorado.edu/en/simulation/beers-law-lab"><img src="http://phet.colorado.edu/sims/beers-law-lab/beers-law-lab-screenshot.png" alt="Beer's Law Lab"/></a>
-            <a href="http://phet.colorado.edu/en/simulation/fractions-intro"><img src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/></a>
-          </section>
-          <section>
-          	<h3>PhET Interactive Simulations</h3>
+            <h2 style="font-size: 56px !important;">PhET Interactive Simulations</h2>
+            <a href="http://phet.colorado.edu" style="position: relative; top: -17px;">http://phet.colorado.edu</a>
+            <p style="margin-top: 10px;">
+              <a href="http://phet.colorado.edu/en/simulation/plate-tectonics"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/plate-tectonics/plate-tectonics-screenshot.png" alt="Plate Tectonics"/></a>
+              <a href="http://phet.colorado.edu/en/simulation/projectile-motion"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/projectile-motion/projectile-motion-screenshot.png" alt="Projectile Motion"/></a>
+              <a href="http://phet.colorado.edu/en/simulation/circuit-construction-kit-dc"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/circuit-construction-kit/circuit-construction-kit-dc-screenshot.png" alt="Circuit Construction Kit"/></a>
+              <br>
+              <a href="http://phet.colorado.edu/en/simulation/build-an-atom"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/build-an-atom/build-an-atom-screenshot.png" alt="Build an Atom"/></a>
+              <a href="http://phet.colorado.edu/en/simulation/beers-law-lab"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/beers-law-lab/beers-law-lab-screenshot.png" alt="Beer's Law Lab"/></a>
+              <a href="http://phet.colorado.edu/en/simulation/fractions-intro"><img class="sim-screenshot" src="http://phet.colorado.edu/sims/fractions/fractions-intro-screenshot.png" alt="Fractions Intro"/></a>
+            </p>
             <ul>
-              <li><a href="http://phet.colorado.edu">http://phet.colorado.edu</a></li>
+              <li>128 free educational simulations in Java and Flash</li>
               <li>Previously seen in <a href="http://spot.colorado.edu/~reids/talks/phet-html5-slides-reid-oct-2012.pdf">Sam Reid's talk</a></li>
               <li>Run over 110 million times, translated to 74 languages</li>
-              <li><strong>Porting to HTML5 to be available on more devices</strong></li>
+              <li><strong>Moving to HTML5 to be available on more devices</strong></li>
             </ul>
           </section>
           <section>
-            <h3>Reasons for Scenery</h3>
+            <h3>Graphics Performance</h3>
             <ul>
-              <li><strong>Performance</strong> and <strong>consistency</strong> between platforms<br>(iOS, Android, Windows RT, Desktop browsers)</li>
-              <li>Concise and clear <strong>syntax</strong></li>
-              <!-- <li>Match conventions from well-designed 2D scene graphs like <a href="http://www.piccolo2d.org/">Piccolo2D</a></li> -->
-              <li><strong>Features</strong></li>
+              <li>WebGL not widely available for mobile devices</li>
+              <li>Optimized Canvas and SVG perform better in different situations (and on different devices)</li>
             </ul>
+            <p style="margin-top: 50px;"><strong>Most libraries focus on either Canvas, SVG or WebGL</strong></p>
           </section>
           <section>
-            <h3>Features we want</h3>
+            <h3>Abstraction over Renderers</h3>
+            <ul>
+              <li>
+                Changing the renderer (Canvas/SVG/WebGL/DOM) and optimizations used should be easy
+              </li>
+              <li>
+                Allow parts of the scene to use different renderers
+              </li>
+              <li>
+                In the future, automatically choose the best renderers based on performance hints and browser profiles
+              </li>
+            </ul>
+            <p style="margin-top: 50px;"><strong>Most libraries only support one renderer at a time</strong></p>
+          </section>
+          <section>
+            <h3>Additional Desired Features</h3>
             <ul>
               <li>Bounds tracking</li>
               <li>Input event system (hit regions, multi-touch support, cursor support)</li>
               <li>Clipping, Masking, Opacity, Gradients, Patterns, Visibility</li>
-              <li>Constructive Solid Geometry, Shape transformations</li>
+              <li>Text, embedded DOM, smooth shapes, CSG</li>
               <li>Integration with arbitrary content, like 3D with <a href="https://github.com/mrdoob/three.js/">three.js</a></li>
-              <li>DAG (directed acyclic graph), not just a tree</li>
+              <li>DAG (directed acyclic graph) support</li>
               <li>Debugging utilities</li>
               <li>Accessibility</li>
             </ul>
+            <p style="margin-top: 50px;"><strong>Most libraries have few of these</strong></p>
           </section>
-          <section>
+          <!-- <section>
             <h3>Other scene graphs</h3>
-            <ul>
+            <ul style="font-size: 80%;">
               <li><strong><a href="http://fabricjs.com/">Fabric</a></strong>: lacks full-featured event handling</li>
               <li><strong><a href="http://kineticjs.com/">Kinetic</a></strong>: good API with layers. hit regions need all same-origin content (issues when running locally)</li>
               <li><strong><a href="http://paperjs.org/">Paper</a></strong>: less performance</li>
               <li><strong><a href="http://labs.hyperandroid.com/static/caat/">CAAT</a></strong>: less popular, dirty rectangle issues</li>
               <li><strong><a href="http://www.createjs.com/#!/EaselJS">Easel</a></strong>: initially chosen before Scenery, does not track bounds</li>
+              <li><strong><a href="http://www.limejs.com/">LimeJS</a></strong>: similar, but no SVG or curve support</li>
               <li><strong><a href="https://github.com/GoodBoyDigital/pixi.js">Pixi.js</a> (new)</strong>: Flash-like API, does not support mixed renderers</li>
               <li><strong><a href="http://jonobr1.github.io/two.js/">Two.js</a> (new)</strong>: looks promising, doesn't support text or images yet</li>
             </ul>
@@ -96,7 +131,7 @@
               Prototypes indicate that custom Canvas and SVG code and barebones scene graphs
               can get <a href="http://phetsims.github.io/scenery/tests/easel-performance/easel-tests.html">better performance</a>
             </p>
-          </section>
+          </section> -->
         </section>
         
         <section>
@@ -226,22 +261,7 @@ third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
             <div id="line-cap-scene" class="scene" style="width: 384px; height: 96px;"></div>
             <div id="line-join-scene" class="scene" style="width: 384px; height: 96px;"></div>
             <div id="line-dash-scene" class="scene" style="width: 384px; height: 48px;"></div>
-          </section>
-          <section>
-            <h3>Axis-aligned Bounds</h3>
-            <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
-            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
-// vertical layout
-path.top = 20;
-fastText.top = path.bottom + 20;
-accurateText.top = fastText.bottom + 20;
-
-// horizontal layout
-fastText.left = 20;              // offset from the left
-path.centerX = fastText.centerX; // center the path above
-accurateText.left = path.left;   // align the lower text with the path
-            </code></pre>
-            <aside class="notes">Possible to implement higher-level layout on top</aside>
+            <p>Supports all Canvas line styles</p>
           </section>
           <section>
             <h3>Scene Graphs</h3>
@@ -284,6 +304,22 @@ scene.children = [                                               // scene
   new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
                       rotation: Math.PI / 4 } ) ];
             </code></pre>
+          </section>
+          <section>
+            <h3>Axis-aligned Bounds</h3>
+            <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
+            <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+// vertical layout
+path.top = 20;
+fastText.top = path.bottom + 20;
+accurateText.top = fastText.bottom + 20;
+
+// horizontal layout
+fastText.left = 20;              // offset from the left
+path.centerX = fastText.centerX; // center the path above
+accurateText.left = path.left;   // align the lower text with the path
+            </code></pre>
+            <aside class="notes">Possible to implement higher-level layout on top</aside>
           </section>
           <section>
             <h3>User Input</h3>
@@ -544,14 +580,15 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           <section>
             <h3>Questions or Comments?</h3>
             <p>(or catch me after)</p>
-            <ul style="margin-bottom: 20px">
-              <li><a href="http://phetsims.github.io/scenery/">http://phetsims.github.io/scenery</a></li>
-              <li><a href="http://phetsims.github.io/kite/">http://phetsims.github.io/kite</a></li>
-              <li><a href="http://phetsims.github.io/dot/">http://phetsims.github.io/dot</a></li>
-              <li style="margin-top: 10px;"><a href="http://jonathan-olson.com/slides-scenery/">http://jonathan-olson.com/slides-scenery</a></li>
+            <ul style="margin-bottom: 80px; margin-top: 30px;">
+              <li>Scenery: <a href="http://phetsims.github.io/scenery/">phetsims.github.io/scenery</a></li>
+              <li style="margin-top: 10px;">These slides: <a href="http://jonathan-olson.com/slides-scenery/">jonathan-olson.com/slides-scenery</a></li>
             </ul>
             
-            <p>Thanks to the PhET team, especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
+            <p>Jonathan Olson</p>
+            <p><a href="https://github.com/jonathanolson">github.com/jonathanolson</a> &nbsp;|&nbsp; <a href="mailto://jonathan.olson@colorado.edu">jonathan.olson@colorado.edu</a></p>
+            
+            <p style="margin-top: 50px;">Thanks to the PhET team (<a href="http://phet.colorado.edu">phet.colorado.edu</a>), especially Sam Reid, Chris Malley, John Blanco and director Kathy Perkins</p>
           </section>
         </section>
         

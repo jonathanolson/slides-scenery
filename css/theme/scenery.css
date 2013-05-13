@@ -58,6 +58,14 @@ a img {
   clear: both;
 }
 
+.sim-screenshot {
+  /*width: 300px;*/
+  width: 180px;
+  /*height: 226px;*/
+  height: 136px;
+  margin: 0 !important; padding: 0 !important;
+}
+
 ::selection {
   color: white;
   background: #d33682;
