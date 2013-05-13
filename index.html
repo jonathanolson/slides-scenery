@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/theme/scenery.css" id="theme">
+    <link rel="stylesheet" href="css/high-contrast.css" disabled id="high-contrast">
     
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -35,7 +36,6 @@
         
         * Accessibility prototypes
         Note about current performance (not ideal yet)
-        High-constrast mode
       -->
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -632,6 +632,12 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
         }
         window.requestAnimationFrame( tick );
       })();
+      
+      window.addEventListener( 'keydown', function( event ) {
+        if ( event.keyCode === 81 ) {
+          $( document.body ).toggleClass( 'highContrast' );
+        }
+      }, true );
       
     </script>
 
