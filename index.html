@@ -389,20 +389,15 @@ accurateText.left = path.left;   // align the lower text with the path
         </section>
         <section>
           <h3>User Input</h3>
-          <div style="width: 700px; margin: 0 auto !important;">
-            <div id="user-input-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
-            <div id="user-input2-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
-          </div>
+          <p>Multi-touch abstraction over DOM3/Touch/Pointer/MSPointer</p>
+          <div id="user-input-scene" class="scene" style="width: 330px; height: 300px;"></div>
           <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 section.cursor = 'pointer'; // change the cursor when the mouse is over a section
 
-// move each section individually
 _.each( scene.children, function( section ) {
+  // move each section individually
   section.addInputListener( new scenery.SimpleDragHandler() );
 } );
-
-// move all sections
-section.addInputListener( new scenery.SimpleDragHandler() );
           </code></pre>
         </section>
         <section>
@@ -417,7 +412,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
           </ul>
         </section>
         
-        <section>
+<!--         <section>
           <h3>User Input</h3>
           <ul>
             <li>Handles DOM3, Touch, Pointer, and MSPointer events</li>
@@ -427,7 +422,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
             <li><span class="soon">Soon</span>: record user interaction, and repeat in unit tests (like Selenium)</li>
             <li><span class="soon">Soon</span>: high-level zoom/pan handling (for entire Scene, or for components)</li>
           </ul>
-        </section>
+        </section> -->
         <section>
           <h3>Kite</h3>
           <p class="verywhite" style="position: relative; top: -10px;">2D Shape Handling <span style="opacity: 0.5;">|</span> <a href="http://phetsims.github.io/kite/">phetsims.github.io/kite</a></p>
