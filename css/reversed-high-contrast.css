@@ -1,0 +1,89 @@
+
+body.highContrastReversed {
+  background: #eee;
+  background-color: #eee;
+}
+
+body.highContrastReversed .reveal {
+  color: #000;
+}
+
+body.highContrastReversed strong {
+  color: #000;
+}
+
+body.highContrastReversed .scene {
+  background-color: #000;
+  position: relative;
+  margin: 30px auto !important; /* reveal.js seems to add a large right margin */
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+}
+
+body.highContrastReversed .verywhite {
+  color: #000 !important;
+}
+
+body.highContrastReversed .reveal h1,
+body.highContrastReversed .reveal h2,
+body.highContrastReversed .reveal h3,
+body.highContrastReversed .reveal h4,
+body.highContrastReversed .reveal h5,
+body.highContrastReversed .reveal h6 {
+  color: #000;
+}
+
+body.highContrastReversed .reveal a:not(.image) {
+  color: #008;
+}
+
+body.highContrastReversed pre code {
+  background: #ffffff;
+  color: #000000;
+}
+
+body.highContrastReversed .soon {
+  color: #080;
+}
+
+body.highContrastReversed .tomorrow-comment, body.highContrastReversed pre .comment, body.highContrastReversed pre .title {
+  /*color: #763;*/
+  color: #333;
+}
+
+body.highContrastReversed .tomorrow-red, body.highContrastReversed pre .variable, body.highContrastReversed pre .attribute, body.highContrastReversed pre .tag, body.highContrastReversed pre .regexp, body.highContrastReversed pre .ruby .constant, body.highContrastReversed pre .xml .tag .title, body.highContrastReversed pre .xml .pi, body.highContrastReversed pre .xml .doctype, body.highContrastReversed pre .html .doctype, body.highContrastReversed pre .css .id, body.highContrastReversed pre .css .class, body.highContrastReversed pre .css .pseudo {
+  color: #224444;
+}
+
+body.highContrastReversed .tomorrow-orange, body.highContrastReversed pre .number, body.highContrastReversed pre .body.highContrastReversed preprocessor, body.highContrastReversed pre .built_in, body.highContrastReversed pre .literal, body.highContrastReversed pre .params, body.highContrastReversed pre .constant {
+  color: #046;
+}
+
+body.highContrastReversed .tomorrow-yellow, body.highContrastReversed pre .ruby .class .title, body.highContrastReversed pre .css .rules .attribute {
+  color: #003374;
+}
+
+body.highContrastReversed .tomorrow-green, body.highContrastReversed pre .string, body.highContrastReversed pre .value, body.highContrastReversed pre .inheritance, body.highContrastReversed pre .header, body.highContrastReversed pre .ruby .symbol, body.highContrastReversed pre .xml .cdata {
+  color: #008;
+}
+
+body.highContrastReversed .tomorrow-aqua, body.highContrastReversed pre .css .hexcolor {
+  color: #7a5e57;
+}
+
+body.highContrastReversed .tomorrow-blue, body.highContrastReversed pre .function, body.highContrastReversed pre .python .decorator, body.highContrastReversed pre .python .title, body.highContrastReversed pre .ruby .function .title, body.highContrastReversed pre .ruby .title .keyword, body.highContrastReversed pre .perl .sub, body.highContrastReversed pre .javascript .title, body.highContrastReversed pre .coffeescript .title {
+  color: #71524e;
+}
+
+body.highContrastReversed .tomorrow-purple, body.highContrastReversed pre .keyword, body.highContrastReversed pre .javascript .function {
+  color: #42644b;
+}
+
+body.highContrastReversed pre .coffeescript .javascript,
+body.highContrastReversed pre .javascript .xml,
+body.highContrastReversed pre .tex .formula,
+body.highContrastReversed pre .xml .javascript,
+body.highContrastReversed pre .xml .vbscript,
+body.highContrastReversed pre .xml .css,
+body.highContrastReversed pre .xml .cdata {
+  opacity: 0.5;
+}
