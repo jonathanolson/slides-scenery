@@ -1,14 +1,14 @@
 
 var graphHighlight = '#ccc';
-function graphNode( name ) {
+function graphNode( name, color, textColor, strokeColor ) {
   var text = new scenery.Text( name, {
-    fontSize: 35, centerX: 0, centerY: 0, fill: '#222'
+    fontSize: 35, centerX: 0, centerY: 0, fill: textColor ? textColor : '#222'
   } );
   var background = new scenery.Path( {
     shape: kite.Shape.bounds( text.bounds.dilated( 10 ) ),
-    stroke: '#000',
+    stroke: strokeColor ? strokeColor : '#000',
     lineWidth: 3,
-    fill: graphHighlight
+    fill: color ? color : graphHighlight
   } );
   var node = new scenery.Node( {
     children: [
