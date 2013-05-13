@@ -164,12 +164,12 @@ greenContainer.layerSplit = true; // will be isolated in a layer
         <section>
           <h3>Dynamic Layering TODO</h3>
         </section>
-        <section>
+        <section data-state="rendererSlide">
           <h3>Renderers</h3>
           <div style="width: 700px; margin: 0 auto !important;">
-            <iframe src="renderers.html?canvas" seamless width="220" height="120" style=" float: left; display: block; border: 0 !important; overflow: hidden; margin: 0 !important; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
-            <iframe src="renderers.html?svg" seamless width="220" height="120" style="margin: 0 !important; float: left; margin-left: 20px !important; display: block; border: 0 !important; overflow: hidden; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
-            <iframe src="renderers.html?dom" seamless width="220" height="120" style="margin: 0 !important; float: left; margin-left: 20px !important; display: block; border: 0 !important; overflow: hidden; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
+            <img class="scene" src="canvas-renderer.png" alt="Scenery Canvas Renderer" width="220" height="120" style="float: left; border: 0 !important; overflow: hidden; margin: 0 !important; padding: 0 !important; width: 220px; height: 120px;"/>
+            <img class="scene" src="svg-renderer.png" alt="Scenery SVG Renderer" width="220" height="120" style="float: left; border: 0 !important; overflow: hidden; margin: 0 !important; padding: 0 !important; width: 220px; height: 120px; margin-left: 20px !important;"/>
+            <img class="scene" src="dom-renderer.png" alt="Scenery DOM Renderer" width="220" height="120" style="float: left; border: 0 !important; overflow: hidden; margin: 0 !important; padding: 0 !important; width: 220px; height: 120px; margin-left: 20px !important;"/>
           </div>
           <ul style="margin-top: 20px;">
             <li>
@@ -643,6 +643,14 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
+      
+      // Reveal.addEventListener( 'rendererSlide', function() {
+      //   document.getElementById( 'iframe1' ).style.height = '121px';
+      //   document.getElementById( 'iframe1' ).style.height = '120px';
+      //   // document.getElementById( 'iframe1' ).contentWindow.location.reload();
+      //   // document.getElementById( 'iframe2' ).contentWindow.location.reload();
+      //   // document.getElementById( 'iframe3' ).contentWindow.location.reload();
+      // } );
       
       scenery.Util.polyfillRequestAnimationFrame();
       
