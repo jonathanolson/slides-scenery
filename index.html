@@ -34,6 +34,8 @@
         Problem (need, couldn't find)
         Scenery (created out of need)
         
+        Consider moving 'Renderers' graphic into "Abstraction over Renderers"
+        
         Note about browser support
         Overhead disadvantage
         Cut many "Challenge" details?
@@ -171,14 +173,11 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           </div>
           <ul style="margin-top: 20px;">
             <li>
-              <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
-              changing every frame. Performance can be slower on high resolution (Retina) devices
-              when matching pixels 1:1, but in general is fast.
+              <strong>Canvas</strong>: Ideal for many objects changing every frame. Slower when full-resolution on Retina-style devices.
             </li>
             <li>
-              <strong>SVG</strong>: Performance varies widely between platforms (superior performance
-              on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
-              than canvas text, and SVG can be a better choice on high-resolution devices.
+              <strong>SVG</strong>: Performance varies, but large objects with CSS transforms are fast. Text looks 'crisper'
+              than Canvas, and SVG can be a better choice on high-resolution devices.
             </li>
             <li>
               <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
@@ -189,17 +188,17 @@ greenContainer.layerSplit = true; // will be isolated in a layer
               mobile browser support.
             </li>
           </ul>
-          <p>
+          <!-- <p>
             <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
-          </p>
+          </p> -->
         </section>
         <section>
           <h3>Canvas Layers</h3>
           <ul>
             <li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
             <li>Filters duplicate state change calls to the Canvas API</li>
-            <li>Soon: Paint only nodes whose bounds are in the dirty region</li>
-            <li>Soon: Off-screen subtree rendering for faster drawing</li>
+            <li><span class="soon">Soon</span>: Paint only nodes whose bounds are in the dirty region</li>
+            <li><span class="soon">Soon</span>: Off-screen subtree rendering for faster drawing</li>
             <div id="dirty-canvas-scene" class="scene" style="width: 300px; height: 300px;"></div>
           </ul>
         </section>
@@ -213,9 +212,9 @@ var scene = new scenery.Scene( $( '#hello-world-scene' ) );
 
 // Add our text
 scene.addChild( new scenery.Text( 'Hello World', {
-centerX: 200, // the center of our text's bounds is at x = 200
-centerY: 50, // the center of our text's bounds is at y = 50
-font: '40px sans-serif', fill: '#eee'
+  centerX: 200, // the center of our text's bounds is at x = 200
+  centerY: 50, // the center of our text's bounds is at y = 50
+  font: '40px sans-serif', fill: '#eee'
 } ) );
 
 // Paint any changes (in this case, our text).
@@ -228,20 +227,20 @@ scene.updateScene();
           <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 // simple shapes can be accelerated
 scene.addChild( new scenery.Rectangle( 10, 10, 100, 80, {
-fill: '#f00', stroke: '#fff', lineWidth: 2
+  fill: '#f00', stroke: '#fff', lineWidth: 2
 } ) );
 
 scene.addChild( new scenery.Path( {
-shape: kite.Shape.regularPolygon( 8, 30 ),
-fill: '#0f0', x: 150, y: 50
+  shape: kite.Shape.regularPolygon( 8, 30 ),
+  fill: '#0f0', x: 150, y: 50
 } ) );
 
 scene.addChild( new scenery.Path( {
-// Canvas-like Path API. Supports SVG Shape( 'M0 90Q155 50 0 10Z' )
-shape: new kite.Shape().lineTo( 0, 90 )
-                       .quadraticCurveTo( 155, 50, 0, 10 )
-                       .close(),
-fill: '#00f', x: 190
+  // Canvas-like Path API. Supports SVG Shape( 'M0 90Q155 50 0 10Z' )
+  shape: new kite.Shape().lineTo( 0, 90 )
+                         .quadraticCurveTo( 155, 50, 0, 10 )
+                         .close(),
+  fill: '#00f', x: 190
 } ) );
           </code></pre>
         </section>
@@ -250,11 +249,11 @@ fill: '#00f', x: 190
           <div id="images-scene" class="scene" style="width: 260px; height: 100px;"></div>
           <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var imageUrl = 'http://phet.colorado.edu/sims/energy-skate-park/' +
-             'energy-skate-park-basics-thumbnail.png';
+               'energy-skate-park-basics-thumbnail.png';
 
 // direct URL reference, but cannot position based on bounds
 scene.addChild( new scenery.Image( imageUrl, {
-x: 100, y: -30, rotation: Math.PI / 6,
+  x: 100, y: -30, rotation: Math.PI / 6,
 } ) );
 
 // can also pass in HTMLImageElement or HTMLCanvasElement references
@@ -269,15 +268,15 @@ scene.addChild( new scenery.Image( img, { opacity: 0.25, scale: 2 } ) );
           <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var element = document.createElement( 'span' );
 element.innerHTML =
-'&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
-'&lt;input type="text"&gt;';
+  '&lt;label style="display: inline;"&gt;Type in me:&lt;/label&gt;' +
+  '&lt;input type="text"&gt;';
 scene.addChild( new scenery.DOM( element, {
-x: 120, rotation: Math.PI / 6
+  x: 120, rotation: Math.PI / 6
 } ) );
 
 // HTML, with the same styling and positioning as Text
 scene.addChild( new scenery.HTMLText( '&lt;em&gt;Italic&lt;/em&gt; and &lt;b&gt;Bold&lt;/b&gt; ', {
-fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
+  fontSize: 30, bottom: 230, centerX: 200, fill: '#9aa'
 } ) );
           </code></pre>
         </section>
@@ -289,17 +288,17 @@ first.fill = 'rgba(255,127,0,0.8)'; // full support for CSS colors
 
 // linear gradients
 secondBottom.fill = new scenery.LinearGradient( 0, 0, 100, 0 )
-                             .addColorStop( 0, '#000' )
-                             .addColorStop( 1, '#666' );
+                               .addColorStop( 0, '#000' )
+                               .addColorStop( 1, '#666' );
 
 // radial gradients
 secondTop.fill = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
-                          .addColorStop( 0, '#0ff' )
-                          .addColorStop( 1, 'rgba(0,127,255,0)' );
+                            .addColorStop( 0, '#0ff' )
+                            .addColorStop( 1, 'rgba(0,127,255,0)' );
 
 // patterns
 var transform = dot.Matrix3.rotation2( Math.PI / 6 )
-                         .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
 third.fill = new scenery.Pattern( img ).setTransformMatrix( transform );
           </code></pre>
         </section>
@@ -311,17 +310,17 @@ first.stroke = 'rgba(255,127,0,0.8)'; // full support for CSS colors
 
 // linear gradients
 secondBottom.stroke = new scenery.LinearGradient( 0, 0, 100, 0 )
-                               .addColorStop( 0, '#000' )
-                               .addColorStop( 1, '#666' );
+                                 .addColorStop( 0, '#000' )
+                                 .addColorStop( 1, '#666' );
 
 // radial gradients
 secondTop.stroke = new scenery.RadialGradient( 32, 32, 5, 64, 64, 60 )
-                            .addColorStop( 0, '#0ff' )
-                            .addColorStop( 1, 'rgba(0,127,255,0)' );
+                              .addColorStop( 0, '#0ff' )
+                              .addColorStop( 1, 'rgba(0,127,255,0)' );
 
 // patterns
 var transform = dot.Matrix3.rotation2( Math.PI / 6 )
-                         .timesMatrix( dot.Matrix3.scale( 0.3 ) );
+                           .timesMatrix( dot.Matrix3.scale( 0.3 ) );
 third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
           </code></pre>
         </section>
@@ -339,28 +338,28 @@ third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
             <div id="dag-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
           </div>
         </section>
-        <section>
+        <!-- <section>
           <h3>Directed Acyclic Graphs</h3>
           <pre><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var arrow = new scenery.Path( {                                  // arrow
-shape: kite.Shape.regularPolygon( 3, 20 ),
-fill: '#0f0', stroke: '#000'
+  shape: kite.Shape.regularPolygon( 3, 20 ),
+  fill: '#0f0', stroke: '#000'
 } );
 var section = new scenery.Node( { children: [                    // section
-new scenery.Rectangle( 0, 0, 100, 100, {                       // back
-  fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
-} ),
-new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ),     // left
-new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )      // right
+  new scenery.Rectangle( 0, 0, 100, 100, {                       // back
+    fill: 'rgba(255,255,255,0.2)', stroke: '#000', lineWidth: 6
+  } ),
+  new scenery.Node( { x: 30, y: 50, children: [ arrow ] } ),     // left
+  new scenery.Node( { x: 70, y: 50, children: [ arrow ] } )      // right
 ] } );
 scene.children = [                                               // scene
-new scenery.Node( { children: [ section ], x: 40, y: 40 } ),   // bottom
-new scenery.Node( { children: [ section ], x: 140, y: 180,     // middle
-                    rotation: Math.PI / 2 } ),
-new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
-                    rotation: Math.PI / 4 } ) ];
+  new scenery.Node( { children: [ section ], x: 40, y: 40 } ),   // bottom
+  new scenery.Node( { children: [ section ], x: 140, y: 180,     // middle
+                      rotation: Math.PI / 2 } ),
+  new scenery.Node( { children: [ section ], x: 220, y: 90,      // top
+                      rotation: Math.PI / 4 } ) ];
           </code></pre>
-        </section>
+        </section> -->
         <section>
           <h3>Axis-aligned Bounds</h3>
           <div id="bounds-scene" class="scene" style="width: 480px; height: 300px;"></div>
@@ -388,7 +387,7 @@ section.cursor = 'pointer'; // change the cursor when the mouse is over a sectio
 
 // move each section individually
 _.each( scene.children, function( section ) {
-section.addInputListener( new scenery.SimpleDragHandler() );
+  section.addInputListener( new scenery.SimpleDragHandler() );
 } );
 
 // move all sections
@@ -414,23 +413,23 @@ section.addInputListener( new scenery.SimpleDragHandler() );
             <li>Uses Pointer abstraction over Mouse/Pen/Touch, and able to add listeners to the pointer itself</li>
             <li>DOM-like event model (support for out/over etc. on nodes, can stop propagation)</li>
             <li>Able to batch input events until the start of an animation frame (for smoothness)</li>
-            <li>Soon: record user interaction, and repeat in unit tests (like Selenium)</li>
-            <li>Soon: high-level zoom/pan handling (for entire Scene, or for components)</li>
+            <li><span class="soon">Soon</span>: record user interaction, and repeat in unit tests (like Selenium)</li>
+            <li><span class="soon">Soon</span>: high-level zoom/pan handling (for entire Scene, or for components)</li>
           </ul>
         </section>
         <section>
           <h3>Kite</h3>
-          <p class="verywhite">2D Shape Handling</p>
+          <p class="verywhite" style="position: relative; top: -10px;">2D Shape Handling <span style="opacity: 0.5;">|</span> <a href="http://phetsims.github.io/kite/">phetsims.github.io/kite</a></p>
           <ul>
             <li>Create shapes using Canvas-like API or with SVG paths</li>
             <li>Computes: stroked shapes, shape bounds and shape-line intersection for hit testing, transformed shapes, arbitrary subdivisions, tangents and curvature</li>
-            <li>Soon: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
+            <li><span class="soon">Soon</span>: CSG, line-dash computation, adaptive discretization, simplication, tesselation, inversion</li>
             <div id="kite-scene" class="scene" style="width: 700px; height: 256px;"></div>
           </ul>
         </section>
         <section>
           <h3>Dot</h3>
-          <p class="verywhite">Mathematics, with a focus on linear algebra</p>
+          <p class="verywhite" style="position: relative; top: -10px;">Math, with a focus on linear algebra <span style="opacity: 0.5;">|</span> <a href="http://phetsims.github.io/dot/">phetsims.github.io/dot</a></p>
           <ul>
             <li>Core types support <strong>mutable</strong> and <strong>immutable</strong> operations</li>
             <li>Matrices use typed arrays, 3x3 optimized for Scenery's usage</li>
@@ -438,7 +437,7 @@ section.addInputListener( new scenery.SimpleDragHandler() );
           </ul>
           <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
 var v = dot( 10, -5 ) // shorthand for Vector2, used for points and vectors
-                    // v.x and v.y are the components
+                      // v.x and v.y are the components
 
 v.normalized().times( 5 ).plus( dot( 1, 2 ) ).x  // immutable, matches formulas
 v.normalize().multiply( 5 ).add( dot( 1, 2 ) ).x // mutable, minimizes GCs
