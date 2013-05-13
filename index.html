@@ -454,45 +454,15 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
         </section>
         
         <section>
-          <h2>Challenges</h2>
-          <ul>
-            <li>Text Bounds</li>
-            <li>Stroked Path Bounds</li>
-            <li>Browser Differences</li>
-            <li>Memory</li>
-            <li>Canvases and Events</li>
-            <li>Antialiasing</li>
-            <li>Opacity Across Layers</li>
-            <li>Accessibility</li>
-          </ul>
-        </section>
-        <section>
           <h3>Text Bounds</h3>
           <div id="text-bounds-scene" class="scene" style="width: 530px; height: 100px;"></div>
           <ul>
-            <li>
-              Without accurate or guaranteed upper bounds,
-              we can't repaint only changed regions on canvas layers.
-            </li>
-            <li>
-              Canvas v5 includes bounds, but is unimplemented.
-            </li>
-            <li>
-              Using DOM / SVG for bounds can be off by unacceptable amounts
-              (height sems to be only based on the font, Unicode combining characters
-              wreak havoc with bounds).
-            </li>
-            <li>
-              For now, applications can select between:
-              <ul>
-                <li>Using canvas pixel inspection to determine bounds (accurate to arbitrary precision, slow)</li>
-                <li>Don't allow text in canvas layers</li>
-                <li>Repaint everything in canvas layers when it contains text</li>
-              </ul>
-            </li>
+            <li>Canvas/DOM/SVG methods are all inaccurate</li>
+            <li>This prevents us from only repainting dirty Canvas regions</li>
+            <li>We also have an accurate Canvas pixel-inspection method</li>
           </ul>
         </section>
-        <section>
+        <!-- <section>
           <h3>Stroked Path Bounds</h3>
           <ul>
             <li>Again for dirty region repainting, we need accurate bounds</li>
@@ -500,21 +470,13 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
             <li>Offset Bézier curves are <strong>not</strong> Bézier curves, so performance suffers if we discretize the curve. Should be possible to break into monotone segments for faster bounds</li>
             <li>It's possible to use miterLimit to get an upper bound, but it isn't tight</li>
           </ul>
-        </section>
+        </section> -->
         <section>
           <h3>Browser Differences</h3>
           <ul>
-            <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist (especially for degenerate cases where the spec is ambiguous)</li>
-            <li>SVG is more consistent (patterns exported from Illustrator and certain radial gradients are current pain points)</li>
-            <li>
-              Scenery works around some bugs, but constrains parameters (will error instead of being inconsistent).
-              <ul>
-                <li>Filters out degenerate path segments</li>
-                <li>Forbids ambiguous arc/ellipticalArc parameters</li>
-                <li>Forbids a subset of radial gradients</li>
-                <li>Hit testing doesn't test Canvas pixels, so file:// is ok</li>
-              </ul>
-            </li>
+            <li>Many <a href="http://jonathan-olson.com/canvas-diff/canvas-diff.html" target="_blank">Canvas inconsistencies</a> exist</li>
+            <li>SVG is more consistent</li>
+            <li>Scenery works around these, or constrains parameters</li>
           </ul>
         </section>
         <section>
@@ -529,22 +491,20 @@ dot.Matrix3.rotation2( Math.PI / 6 ).multiplyVector2( v ) // mutable
           <h3>Canvases and Events</h3>
           <ul>
             <li>
-              We haven't found a good way to allow DOM events to pass through a canvas and fire on a DOM element
-              <ul>
-                <li>Synthesizing events to dispatch to the element will not trigger many default behaviors (for example, :hover)</li>
-                <li>Event propagation path can't be changed to a different target</li>
-                <li>'pointer-events: none' allows events to pass through everywhere but IE</li>
-              </ul>
+              No good way to allow DOM events to pass through a Canvas and fire on a DOM element
+              <!-- <ul>
+                <li>Synthesizing events won't trigger :hover, IE doesn't support 'pointer-events' on DOM elements</li>
+              </ul> -->
             </li>
-            <li>For now, we've been using SVG layers with 'pointer-events: none', which DOES work on IE</li>
-            <li>We plan to enforce the "no canvas above DOM" rule, possibly only if their bounds intersect</li>
+            <li style="margin-top: 50px;">We use SVG layers with 'pointer-events: none' (works on IE) above DOM layers</li>
+            <!-- <li>We plan to enforce the "no canvas above DOM" rule, possibly only if their bounds intersect</li> -->
           </ul>
         </section>
         <section>
           <h3>Antialiasing</h3>
           <ul>
-            <li>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node, and prevents layer-minimizing optimizations</li>
-            <li>Headache for image-based unit tests (how to determine pass/fail without false readings)</li>
+            <li>Antialiasing differences between Canvas/SVG/DOM will cause a slight change when switching the renderer on a node<!-- , and prevents layer-minimizing optimizations --></li>
+            <!-- <li>Headache for image-based unit tests (how to determine pass/fail without false readings)</li> -->
           </ul>
         </section>
         <section>
