@@ -65,21 +65,23 @@ $( window ).ready( function() {
     
     var width = 200;
     
-    scene.addChild( new scenery.Rectangle( -24, 60-65/2, width, 65, { stroke: '#000', fill: '#6f6' } ) );
-    scene.addChild( new scenery.Rectangle( -24, 125-65/2, width, 65*2, { stroke: '#000', fill: '#66f' } ) );
-    scene.addChild( new scenery.Rectangle( -24, 255-65/2, width, 65, { stroke: '#000', fill: '#f66' } ) );
-    scene.addChild( new scenery.Rectangle( -24, 320-65/2, width, 65, { stroke: '#000', fill: '#6f6' } ) );
+    var sf = 60;
     
-    scene.addChild( new scenery.Text( 'Canvas', { fontSize: 30, centerX: 100, centerY: 60 } ) );
-    scene.addChild( new scenery.Text( 'SVG', { fontSize: 30, centerX: 100, centerY: (125+190)/2 } ) );
-    scene.addChild( new scenery.Text( 'DOM', { fontSize: 30, centerX: 100, centerY: 255 } ) );
-    scene.addChild( new scenery.Text( 'Canvas', { fontSize: 30, centerX: 100, centerY: 320 } ) );
+    scene.addChild( new scenery.Rectangle( -24, -sf/2, width, sf, { stroke: '#000', lineWidth: 4, fill: '#6f6' } ) );
+    scene.addChild( new scenery.Rectangle( -24, sf-sf/2, width, sf*2, { stroke: '#000', lineWidth: 4, fill: '#66f' } ) );
+    scene.addChild( new scenery.Rectangle( -24, 3*sf-sf/2, width, sf, { stroke: '#000', lineWidth: 4, fill: '#f66' } ) );
+    scene.addChild( new scenery.Rectangle( -24, 4*sf-sf/2, width, sf, { stroke: '#000', lineWidth: 4, fill: '#6f6' } ) );
     
-    var p1 = graphNode( '1', '#6f6', '#000', 'transparent' ); scene.addChild( p1 ); p1.y = 320;
-    var p2 = graphNode( '2', '#f66', '#000', 'transparent' ); scene.addChild( p2 ); p2.y = 255;
-    var p3 = graphNode( '3', '#66f', '#000', 'transparent' ); scene.addChild( p3 ); p3.y = 190;
-    var p4 = graphNode( '4', '#66f', '#000', 'transparent' ); scene.addChild( p4 ); p4.y = 125;
-    var p5 = graphNode( '5', '#6f6', '#000', 'transparent' ); scene.addChild( p5 ); p5.y = 60;
+    scene.addChild( new scenery.Text( 'Canvas', { fontSize: 30, centerX: 100, centerY: 0 } ) );
+    scene.addChild( new scenery.Text( 'SVG', { fontSize: 30, centerX: 100, centerY: (3*sf)/2 } ) );
+    scene.addChild( new scenery.Text( 'DOM', { fontSize: 30, centerX: 100, centerY: 3*sf } ) );
+    scene.addChild( new scenery.Text( 'Canvas', { fontSize: 30, centerX: 100, centerY: 4*sf } ) );
+    
+    var p1 = graphNode( '1', '#6f6', '#000', 'transparent' ); scene.addChild( p1 ); p1.y = 4 * sf;
+    var p2 = graphNode( '2', '#f66', '#000', 'transparent' ); scene.addChild( p2 ); p2.y = 3 * sf;
+    var p3 = graphNode( '3', '#66f', '#000', 'transparent' ); scene.addChild( p3 ); p3.y = 2 * sf;
+    var p4 = graphNode( '4', '#66f', '#000', 'transparent' ); scene.addChild( p4 ); p4.y = sf;
+    var p5 = graphNode( '5', '#6f6', '#000', 'transparent' ); scene.addChild( p5 ); p5.y = 0;
     
     scene.centerX = 150;
     scene.centerY = 200;
