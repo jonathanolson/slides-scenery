@@ -76,6 +76,11 @@ iframe {
   margin: 0 !important; padding: 0 !important;
 }
 
+table td img {
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6) !important;
+}
+
 ::selection {
   color: white;
   background: #d33682;
