@@ -1,3 +1,4 @@
+// deprecated for now (nested CSS transforms playing tricks on browsers), see renderers.html
 
 $( window ).ready( function() {
   var canvasScene = new scenery.Scene( $( '#canvas-renderer-scene' ), { renderer: 'canvas' } );

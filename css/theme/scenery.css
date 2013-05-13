@@ -54,6 +54,11 @@ a img {
   color: #eee8d5 !important;
 }
 
+iframe {
+  background-color: #001E26;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+}
+
 .clear {
   clear: both;
 }

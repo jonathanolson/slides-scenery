@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <title>Renderer Examples</title>
+  <!-- load with renderers.html?canvas, ?dom, or ?svg -->
+  
+  <!-- jQuery and lodash are dependencies -->
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/lodash.min-1.0.0-rc.3.js"></script>
+
+  <script src="js/scenery.min.js"></script>
+  
+  <style type="text/css">
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="renderer-scene" class="scene" style="width: 220px; height: 120px; background-color: rgb(0,30,38);"></div>
+  <script type="text/javascript">
+    
+    var name = window.location.search.slice( 1 );
+    console.log( name );
+    
+    var capName = ( name === 'canvas' ? 'Canvas' : name.toUpperCase() );
+    console.log( capName );
+     
+    var scene = new scenery.Scene( $( '#renderer-scene' ), { renderer: name } );
+    scene.addChild( new scenery.Text( capName, { boundsMethod: 'fastCanvas', left: 10, bottom: 110, fill: '#eee', fontSize: 24 } ) );
+    
+    var logo = document.createElement( 'img' );
+    logo.addEventListener( 'load', function() {
+      var node = new scenery.Image( logo, {
+        scale: 0.5,
+        rotation: Math.PI / 6,
+        x: 130,
+        y: 20
+      } );
+      scene.addChild( node );
+      scene.updateScene();
+    } );
+    logo.src = 'http://phet.colorado.edu/images/phet-logo-yellow.png';
+     
+    // Paint any changes (in this case, our text).
+    scene.updateScene();
+  </script>
+</body>
+</html>

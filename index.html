@@ -114,6 +114,21 @@
           </ul>
           <p style="margin-top: 50px;"><strong>Most libraries have few of these</strong></p>
         </section>
+        
+        <section>
+          <h2>Scenery</h2>
+          <h3 style="margin-top: 80px;">A Scene Graph (like the DOM)</h3>
+          <div style="width: 700px; margin: 0 auto !important;">
+            <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
+            <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
+          </div>
+          <!-- <p class="clear">Each node has:</p>
+          <ul>
+            <li>A transform</li>
+            <li>An ordered list of children (rendered bottom to top)</li>
+          </ul> -->
+          <!-- <p class="clear">Each node has a transform and an ordered list of children</p> -->
+        </section>
         <!-- <section>
           <h3>Other scene graphs</h3>
           <ul style="font-size: 80%;">
@@ -131,6 +146,63 @@
             can get <a href="http://phetsims.github.io/scenery/tests/easel-performance/easel-tests.html">better performance</a>
           </p>
         </section> -->
+        
+        <section>
+          <h3>Layers</h3>
+          <p class="verywhite">Higher performance by splitting content into layers</p>
+          <ul>
+            <li>Only need to redraw (or update) changed layers</li>
+            <li>Each layer can use the best-performing layer for that content</li>
+          </ul>
+          <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
+          <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
+greenContainer.layerSplit = true; // will be isolated in a layer
+          </code></pre>
+        </section>
+        <section>
+          <h3>Dynamic Layering TODO</h3>
+        </section>
+        <section>
+          <h3>Renderers</h3>
+          <div style="width: 700px; margin: 0 auto !important;">
+            <iframe src="renderers.html?canvas" seamless width="220" height="120" style=" float: left; display: block; border: 0 !important; overflow: hidden; margin: 0 !important; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
+            <iframe src="renderers.html?svg" seamless width="220" height="120" style="margin: 0 !important; float: left; margin-left: 20px !important; display: block; border: 0 !important; overflow: hidden; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
+            <iframe src="renderers.html?dom" seamless width="220" height="120" style="margin: 0 !important; float: left; margin-left: 20px !important; display: block; border: 0 !important; overflow: hidden; padding: 0 !important; width: 220px; height: 120px;" scrolling="no"></iframe>
+          </div>
+          <ul style="margin-top: 20px;">
+            <li>
+              <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
+              changing every frame. Performance can be slower on high resolution (Retina) devices
+              when matching pixels 1:1, but in general is fast.
+            </li>
+            <li>
+              <strong>SVG</strong>: Performance varies widely between platforms (superior performance
+              on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
+              than canvas text, and SVG can be a better choice on high-resolution devices.
+            </li>
+            <li>
+              <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
+              cases (untested).
+            </li>
+            <li>
+              <strong>WebGL</strong>: Anticipated highest performance for sprite-like cases, but currently lacks
+              mobile browser support.
+            </li>
+          </ul>
+          <p>
+            <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
+          </p>
+        </section>
+        <section>
+          <h3>Canvas Layers</h3>
+          <ul>
+            <li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
+            <li>Filters duplicate state change calls to the Canvas API</li>
+            <li>Soon: Paint only nodes whose bounds are in the dirty region</li>
+            <li>Soon: Off-screen subtree rendering for faster drawing</li>
+            <div id="dirty-canvas-scene" class="scene" style="width: 300px; height: 300px;"></div>
+          </ul>
+        </section>
         
         <section>
           <h2>A Tour of Scenery</h2>
@@ -261,19 +333,6 @@ third.stroke = new scenery.Pattern( img ).setTransformMatrix( transform );
           <p>Supports all Canvas line styles</p>
         </section>
         <section>
-          <h3>Scene Graphs</h3>
-          <div style="width: 700px; margin: 0 auto !important;">
-            <div id="hier-tree-scene" class="scene" style="float: left; width: 340px; height: 300px;"></div>
-            <div id="hier-coord-scene" class="scene" style="float: left; margin-left: 20px !important; width: 340px; height: 300px;"></div>
-          </div>
-          <p class="clear">Each node has:</p>
-          <ul>
-            <li>A transform</li>
-            <li>An ordered list of children (rendered bottom to top)</li>
-          </ul>
-          <!-- <p class="clear">Each node has a transform and an ordered list of children</p> -->
-        </section>
-        <section>
           <h3>Directed Acyclic Graphs</h3>
           <div style="width: 800px; margin: 0 auto !important;">
             <div id="dag-tree-scene" class="scene" style="float: left; width: 440px; height: 500px;"></div>
@@ -348,74 +407,6 @@ section.addInputListener( new scenery.SimpleDragHandler() );
           </ul>
         </section>
         
-        <section>
-          <h2>Design</h2>
-          <ul>
-            <li>Nodes can support multiple renderers (Canvas, SVG, DOM and soon WebGL)</li>
-            <li>Internally, layers allow multiple renderers in the same scene</li>
-            <li>
-              The application (or Scenery itself in the future) can control what renderers
-              are used for what parts of the scene.
-            </li>
-            <li>Mouse/Pen/Multi-touch input handling</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Renderers</h3>
-          <!-- <div style="width: 700px; margin: 0 auto !important;">
-            <div id="canvas-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-            <div id="svg-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-            <div id="dom-renderer-scene" class="scene" style="width: 220px; height: 120px;"></div>
-          </div> -->
-          <ul>
-            <li>
-              <strong>Canvas</strong>: Less stateful than SVG/DOM, ideal for many objects
-              changing every frame. Performance can be slower on high resolution (Retina) devices
-              when matching pixels 1:1, but in general is fast.
-            </li>
-            <li>
-              <strong>SVG</strong>: Performance varies widely between platforms (superior performance
-              on some platforms when combined with CSS transforms, slower on others). Text looks 'crisper'
-              than canvas text, and SVG can be a better choice on high-resolution devices.
-            </li>
-            <li>
-              <strong>DOM</strong>: Supports text, images and arbitrary DOM, and may be faster for some
-              cases (untested).
-            </li>
-            <li>
-              <strong>WebGL</strong>: Anticipated highest performance for sprite-like cases, but currently lacks
-              mobile browser support.
-            </li>
-          </ul>
-          <p>
-            <a href="http://phetsims.github.io/scenery/tests/renderer-comparison.html" target="_blank">Visual Comparison of Renderers</a>
-          </p>
-        </section>
-        <section>
-          <h3>Layers</h3>
-          <p class="verywhite">Higher performance by splitting content into layers</p>
-          <ul>
-            <li>Only need to redraw (or update) changed layers</li>
-            <li>Each layer can use the best-performing layer for that content</li>
-          </ul>
-          <div id="box-layers-scene" class="scene" style="width: 300px; height: 300px;"></div>
-          <pre class="clear"><code data-trim class="javascript" contenteditable style="font-size: 18px; margin-top: 20px;">
-greenContainer.layerSplit = true; // will be isolated in a layer
-          </code></pre>
-        </section>
-        <section>
-          <h3>Dynamic Layering TODO</h3>
-        </section>
-        <section>
-          <h3>Canvas Layers</h3>
-          <ul>
-            <li>Tracks the bounding box of changes (only repaint 'dirty' areas)</li>
-          	<li>Filters duplicate state change calls to the Canvas API</li>
-          	<li>Soon: Paint only nodes whose bounds are in the dirty region</li>
-          	<li>Soon: Off-screen subtree rendering for faster drawing</li>
-            <div id="dirty-canvas-scene" class="scene" style="width: 300px; height: 300px;"></div>
-          </ul>
-        </section>
         <section>
           <h3>User Input</h3>
           <ul>
