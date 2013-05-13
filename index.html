@@ -31,11 +31,7 @@
       <!--
         TODO:
         
-        Consider moving 'Renderers' graphic into "Abstraction over Renderers"
-        
         Integrate canvas diff?
-        
-        * Accessibility prototypes
       -->
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -392,14 +388,20 @@ _.each( scene.children, function( section ) {
         <section>
           <h3>Scenery In Use</h3>
           <p>Under development:</p>
-          <ul>
-            <li><a href="http://localhost/phet/git/forces-and-motion-basics/forces-and-motion-basics.html" target="_blank">Forces and Motion: Basics</a></li>
-            <li><a href="http://localhost/phet/git/beers-law-lab/beers-law-lab.html" target="_blank">Beer's Law Lab</a></li>
-            <li>Build an Atom</li>
-            <li>Build a Molecule</li>
-            <li>Balloons and Static Electricity</li>
-          </ul>
-          <p style="margin-top: 20px;"><a href="http://requirejs.org/">Require.js</a> for modularization</p>
+          <div style="width: 800px; margin: 0 auto !important;">
+            <div style="float: left; width: 390px; margin: 0;">
+              <a href="https://github.com/phetsims/forces-and-motion-basics" target="_blank">
+              <img src="forces-and-motion-basics.png" alt="Forces and Motion: Basics" width="390" height="250"/>
+              <span style="position: relative; top: -15px; font-size: 90%;">Forces and Motion: Basics</span></a><br>
+            </div>
+            <div style="float: left; margin-left: 20px !important; width: 390px; margin: 0;">
+              <a href="https://github.com/phetsims/beers-law-lab" target="_blank">
+              <img src="beers-law-lab.png" alt="Beer's Law Lab" width="390" height="250"/>
+              <span style="position: relative; top: -15px; font-size: 90%;">Beer's Law Lab</span></a>
+            </div>
+          </div>
+          <p style="clear: both; font-size: 90%;">And 2 more: <a href="https://github.com/phetsims/build-an-atom" target="_blank">Build an Atom</a> and <a href="https://github.com/phetsims/balloons-and-static-electricity" target="_blank">Balloons and Static Electricity</a></p>
+          <p style="margin-top: 40px; clear: both;"><a href="http://requirejs.org/">Require.js</a> for modularization</p>
           <p>Mostly feature-complete, working on performance</p>
         </section>
         
