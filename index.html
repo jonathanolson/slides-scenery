@@ -36,6 +36,8 @@
         
         Consider moving 'Renderers' graphic into "Abstraction over Renderers"
         
+        Integrate canvas diff?
+        
         Note about browser support
         Overhead disadvantage
         Cut many "Challenge" details?
@@ -162,12 +164,16 @@ greenContainer.layerSplit = true; // will be isolated in a layer
           </code></pre>
         </section>
         <section>
-          <h3>Dynamic Layering</h3>
+          <h3>Subtree Layers</h3>
           <div style="width: 700px; margin: 0 auto !important;">
             <div id="dynamic-layers-scene" class="scene" style="float: left; width: 380px; height: 400px;"></div>
             <div id="dynamic-layers2-scene" class="scene" style="float: left; margin-left: 20px !important; width: 300px; height: 400px;"></div>
           </div>
-          <!-- <div id="dynamic-layers-scene" class="scene" style="width: 700px; height: 500px;"></div> -->
+          <div class="clear"></div>
+          <ul>
+            <li>Flags can change the renderer/layer for an entire subtree</li>
+            <li>Nesting is fine, and Scenery combines layers where possible</li>
+          </ul>
         </section>
         <section data-state="rendererSlide">
           <h3>Renderers</h3>
